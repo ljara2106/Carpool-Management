@@ -18,7 +18,7 @@ if (isset($_SESSION["user_id"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Student - CarPool Management</title>
+    <title>In Queue - CarPool Management</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
@@ -26,7 +26,7 @@ if (isset($_SESSION["user_id"])) {
 
 
     <center>
-    <h1><a href = "index.php">Search Student - CarPool Management</a></h1>
+    <h1><a href = "index.php">In Queue - CarPool Management</a></h1>
 </br>
     <?php if (isset($user)): ?>
         
@@ -34,37 +34,21 @@ if (isset($_SESSION["user_id"])) {
         <br>
 
         <!--<button><font size="6" <a href="search.php">Search Student</a></font>   </button>-->
-        <script>
-        function isNumberKey(evt){
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-        return true;
-        }    
-        </script>
-
-        <div class="container">
-        <form method="POST">
-            <input type="text" placeholder="Search student ID" name="search" onkeypress="return isNumberKey(event)">
-
-            <button name="submit">Search</button>
-            
-        </form>
 
         <br>
         <br>
         <br>
+
+
         <div class="container">
         <table class ="table">
             <?php
             if(isset($_POST['submit'])){
                  $search=$_POST['search'];
                  
-                 $sql="select * from `students` where student_id='$search'";
+                 $sql="select * from `inqueue` where student_id='$search' or teacher_name='$search'";
             
                  $results=mysqli_query($mysqli,$sql);
-
-
 
                 if($result){
                    if(mysqli_num_rows($results)>0){
@@ -80,7 +64,7 @@ if (isset($_SESSION["user_id"])) {
                     </thead>
                     ';
 
-                    while($row=mysqli_fetch_assoc($results)){
+                    $row=mysqli_fetch_assoc($results);
                     echo '<tbody>
                     <tr>
                     <td>'.$row['id'].'</td>
@@ -90,39 +74,20 @@ if (isset($_SESSION["user_id"])) {
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     </tr>
-                    </tbody>';   
-                    
-                    
+                    </tbody>';
+                   }
 
-                 //add search result to inqueue table
-                 $add_queue = "insert into `inqueue` (`id`, `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`) 
-                 values ($results[id], $results[student_id], $results[first_name], $results[last_name], $results[grade], $results[teacher_name])"; 
-
-                 $result_queue = $mysqli->query($add_queue);
-                 
-                 if($result_queue==true){
-                     echo 'Student added to Queue list';
-                }
-
-
+                   else{
+                       echo '<h2 class=text-danger>Student data not found</h2>'; 
+                   }
 
                 }
 
 
 
-   
-
 
             }
 
-
-            else{
-                echo '<h2 class=text-danger>Student data not found</h2>'; 
-            }
-
-            }
-        
-        }
 
 
 
