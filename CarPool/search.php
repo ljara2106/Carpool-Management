@@ -66,16 +66,16 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-                if($result){
+                if($results){
                    if(mysqli_num_rows($results)>0){
                     echo '<thead>
                     <tr>
-                    <th>ID</th>
-                    <th>Student ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Grade</th>
-                    <th>Teacher Name</th>
+                    <th><strong>ID</strong></th>
+                    <th><strong>Student_ID</strong></th>
+                    <th><strong>First_Name</strong></th>
+                    <th><strong>Last_Name</strong></th>
+                    <th><strong>Grade</strong></strig></th>
+                    <th><strong>Teacher_Name</strong></th>
                     </tr>
                     </thead>
                     ';
@@ -95,25 +95,24 @@ if (isset($_SESSION["user_id"])) {
                     
 
                  //add search result to inqueue table
-                 $add_queue = "insert into `inqueue` (`id`, `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`) 
-                 values ($results[id], $results[student_id], $results[first_name], $results[last_name], $results[grade], $results[teacher_name])"; 
+                 $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`) 
+                 values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]')"; 
 
-                 $result_queue = $mysqli->query($add_queue);
+
+                 //var_dump($add_queue);
+                // die;         
+                 $result_queue = mysqli_query($mysqli,$add_queue);
                  
                  if($result_queue==true){
-                     echo 'Student added to Queue list';
+
+                     echo ' <strong> Student ' .$row['first_name']. ' added to Queue list!</strong> <br><br><br>';
                 }
 
 
-
-                }
-
+             }
 
 
-   
-
-
-            }
+         }
 
 
             else{
