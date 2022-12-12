@@ -21,6 +21,7 @@ if (isset($_SESSION["user_id"])) {
     <title>Search Student - CarPool Management</title>
     <meta charset="UTF-8">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -36,7 +37,7 @@ if (isset($_SESSION["user_id"])) {
         <!--<button><font size="6" <a href="search.php">Search Student</a></font>   </button>-->
 
         <div class="col">
-				<script src="/js/instascan.min.js"></script>
+				<script src="js/instascan.min.js"></script>
 				
 				<div>
 					<video id="preview" class="p-1 border" style="width:50%;"></video>
