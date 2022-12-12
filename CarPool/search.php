@@ -36,72 +36,43 @@ if (isset($_SESSION["user_id"])) {
 
         <!--<button><font size="6" <a href="search.php">Search Student</a></font>   </button>-->
 
-        <div class="col">
-				<script src="js/instascan.min.js"></script>
-				
-				<div>
-					<video id="preview" class="p-1 border" style="width:50%;"></video>
-				</div>
-				<script type="text/javascript">
-					var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-					scanner.addListener('scan',function(content){
-						//alert(content);
-						//window.location.href=content;
-                        document.getElementById("search").value=content;
-					});
-					Instascan.Camera.getCameras().then(function (cameras){
-						if(cameras.length>0){
-							scanner.start(cameras[0]);
-							$('[name="options"]').on('change',function(){
-								if($(this).val()==1){
-									if(cameras[0]!=""){
-										scanner.start(cameras[0]);
-									}else{
-										alert('No Front camera found!');
-									}
-								}else if($(this).val()==2){
-									if(cameras[1]!=""){
-										scanner.start(cameras[1]);
-									}else{
-										alert('No Back camera found!');
-									}
-								}
-							});
-						}else{
-							console.error('No cameras found.');
-							alert('No cameras found.');
-						}
-					}).catch(function(e){
-						console.error(e);
-						//alert(e);
-					});
-
-                    // scan the qr code part
-
-                    // scanner.addListener('scan', function(c){
-                   //  document.getElementById("text").value=c;
-
-                  //  });
-
-
-				</script>
-				<div>
-				  <label class="btn btn-primary active">
-					<input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera
-				  </label>
-				  <label class="btn btn-secondary">
-					<input type="radio" name="options" value="2" autocomplete="off"> Back Camera
-				  </label>
-				</div>
-			</div>
-
-
         <!--// scan the qr code part
 
           //  scanner.addListener('scan', function(c){
           //  document.getElementById("text").value=c;
 
        // });-->
+
+       <script src="js/html5-qrcode.min.js"></script>
+
+
+       <div style="width: 300px" id="reader"></div>
+
+       <script>
+
+            function onScanSuccess(decodedText, decodedResult) {
+                // Handle on success condition with the decoded text or result.
+                console.log(`Scan result: ${decodedText}`, decodedResult);
+                document.getElementById("search").value=decodedText;
+            }
+
+            function onScanError(errorMessage) {
+                // handle on error condition, with error message
+                console.log(errorMessage);
+            }
+
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 200});
+            html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+
+       </script>
+
+
+        <br>
+        <br>
+        <br>
+
 
        <script>
         function isNumberKey(evt){
@@ -139,12 +110,12 @@ if (isset($_SESSION["user_id"])) {
                    if(mysqli_num_rows($results)>0){
                     echo '<thead>
                     <tr>
-                    <th><strong>ID</strong></th>
+                   
                     <th><strong>Student ID</strong></th>
                     <th><strong>First Name</strong></th>
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
-                    <th><strong>Teacher Name</strong></th>
+                    <th><strong>Teacher</strong></th>
                     </tr>
                     </thead>
                     ';
@@ -152,7 +123,7 @@ if (isset($_SESSION["user_id"])) {
                     while($row=mysqli_fetch_assoc($results)){
                     echo '<tbody>
                     <tr>
-                    <td>'.$row['id'].'</td>
+                    
                     <td>'.$row['student_id'].'</td>
                     <td>'.$row['first_name'].'</td>
                     <td>'.$row['last_name'].'</td>
@@ -167,8 +138,8 @@ if (isset($_SESSION["user_id"])) {
                  $check_queue =  $mysqli->query("SELECT student_id FROM `inqueue`  WHERE student_id = '$search' and DATE(datetime_added) = CURDATE()");
                  if($check_queue->num_rows == 0) {
                       // row not found, do stuff...
-                      $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`) 
-                      values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]')"; 
+                      $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `picked_up`) 
+                      values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', '0')"; 
                       $result_queue = mysqli_query($mysqli,$add_queue);
     
                         echo '  <strong><h2 style="background-color:DodgerBlue;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br><br><br>';

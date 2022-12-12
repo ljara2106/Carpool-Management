@@ -14,6 +14,9 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
 }
 
+$page = $_SERVER['PHP_SELF'];
+$sec = "5";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,12 +25,13 @@ if (isset($_SESSION["user_id"])) {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
 <body>
 
 
     <center>
-    <h1><a href = "index.php"> Queue List - CarPool Management</a></h1>
+    <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
 </br>
     <?php if (isset($user)): ?>
         
@@ -61,7 +65,7 @@ if (isset($_SESSION["user_id"])) {
                     <th><strong>Grade</strong></strig></th>
                     <th><strong>Teacher</strong></th>
                     <th><strong>Added @</strong></th>
-                    <th><strong>Action</strong></th>
+                 
                     </tr>
                     </thead>
                     ';
@@ -76,7 +80,7 @@ if (isset($_SESSION["user_id"])) {
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">Picked Up</a></td>
+                    <td> ⌚🚗 Ready </td>
                     </tr>
                     </tbody>';
                     }
