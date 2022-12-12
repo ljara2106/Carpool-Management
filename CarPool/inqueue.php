@@ -43,10 +43,9 @@ if (isset($_SESSION["user_id"])) {
         <div class="container">
         <table class ="table">
             <?php
-            if(isset($_POST['submit'])){
-                 $search=$_POST['search'];
+            
                  
-                 $sql="select * from `inqueue` where student_id='$search' or teacher_name='$search'";
+                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() ";
             
                  $results=mysqli_query($mysqli,$sql);
 
@@ -54,31 +53,34 @@ if (isset($_SESSION["user_id"])) {
                    if(mysqli_num_rows($results)>0){
                     echo '<thead>
                     <tr>
-                    <th>ID</th>
-                    <th>Student ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Grade</th>
-                    <th>Teacher Name</th>
+                    <th><strong>Queue ID</strong></th>
+                    <th><strong>Student ID</strong></th>
+                    <th><strong>First Name</strong></th>
+                    <th><strong>Last Name</strong></th>
+                    <th><strong>Grade</strong></strig></th>
+                    <th><strong>Teacher Name</strong></th>
+                    <th><strong>Date / Time</strong></th>
                     </tr>
                     </thead>
                     ';
 
-                    $row=mysqli_fetch_assoc($results);
+                    while($row=mysqli_fetch_assoc($results)){
                     echo '<tbody>
                     <tr>
-                    <td>'.$row['id'].'</td>
+                    <td>'.$row['queue_id'].'</td>
                     <td>'.$row['student_id'].'</td>
                     <td>'.$row['first_name'].'</td>
                     <td>'.$row['last_name'].'</td>
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
+                    <td>'.$row['datetime_added'].'</td>
                     </tr>
                     </tbody>';
+                    }
                    }
 
                    else{
-                       echo '<h2 class=text-danger>Student data not found</h2>'; 
+                       echo '<h2 class=text-danger>No student data found, please add student to the queue.</h2>'; 
                    }
 
                 }
@@ -86,8 +88,7 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-            }
-
+            
 
 
 

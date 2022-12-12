@@ -71,11 +71,11 @@ if (isset($_SESSION["user_id"])) {
                     echo '<thead>
                     <tr>
                     <th><strong>ID</strong></th>
-                    <th><strong>Student_ID</strong></th>
-                    <th><strong>First_Name</strong></th>
-                    <th><strong>Last_Name</strong></th>
+                    <th><strong>Student ID</strong></th>
+                    <th><strong>First Name</strong></th>
+                    <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
-                    <th><strong>Teacher_Name</strong></th>
+                    <th><strong>Teacher Name</strong></th>
                     </tr>
                     </thead>
                     ';
@@ -105,7 +105,7 @@ if (isset($_SESSION["user_id"])) {
                  
                  if($result_queue==true){
 
-                     echo ' <strong> Student ' .$row['first_name']. ' added to Queue list!</strong> <br><br><br>';
+                     echo '  <strong><h2 style="background-color:DodgerBlue;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br><br><br>';
                 }
 
 
@@ -134,6 +134,9 @@ if (isset($_SESSION["user_id"])) {
 
 
 
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
