@@ -59,7 +59,7 @@ if (isset($_SESSION["user_id"])) {
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
                     <th><strong>Teacher Name</strong></th>
-                    <th><strong>Date / Time</strong></th>
+                    <th><strong>Added @</strong></th>
                     </tr>
                     </thead>
                     ';
