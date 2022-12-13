@@ -21,9 +21,10 @@ $sec = "5";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>In Queue - CarPool Management</title>
+    <title>Monitor - CarPool Management</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
@@ -32,6 +33,10 @@ $sec = "5";
 
     <center>
     <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
+    <br>
+
+    <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+
 </br>
     <?php if (isset($user)): ?>
         
@@ -42,15 +47,13 @@ $sec = "5";
 
         <br>
         <br>
-        <br>
-
 
         <div class="container">
         <table class ="table">
             <?php
             
                  
-                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0  ";
+                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 10 ";
             
                  $results=mysqli_query($mysqli,$sql);
 

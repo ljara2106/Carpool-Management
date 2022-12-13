@@ -20,7 +20,7 @@ if (isset($_SESSION["user_id"])) {
 <head>
     <title>In Queue - CarPool Management</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -28,6 +28,9 @@ if (isset($_SESSION["user_id"])) {
 
     <center>
     <h1><a href = "index.php"> Queue List - CarPool Management</a></h1>
+    <br>
+    <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    
 </br>
     <?php if (isset($user)): ?>
         
@@ -76,7 +79,7 @@ if (isset($_SESSION["user_id"])) {
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">Picked Up</a></td>
+                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Picked Up</a></td>
                     </tr>
                     </tbody>';
                     }
