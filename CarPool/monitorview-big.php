@@ -35,7 +35,7 @@ $sec = "5";
     <center>
     <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
 
-    <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
 
 </br>
     <?php if (isset($user)): ?>

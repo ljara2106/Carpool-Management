@@ -39,7 +39,7 @@ if (isset($_SESSION["user_id"])) {
 <body>
     <center>
     <h1>Home - CarPool Management</h1>
-    <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
     <br>
     <br>
     <br>

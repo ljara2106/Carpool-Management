@@ -42,7 +42,7 @@ class actions {
                 $result_queue = mysqli_query($this->db,$update_queue);
 
                 $host = $_SERVER['HTTP_HOST'];
-                header('Location: http://'.$host.'/CarPool/inqueue.php');exit;
+                header('Location: http://'.$host.'/carpool/inqueue.php');exit;
             } else {
                 // do other stuff...
             }

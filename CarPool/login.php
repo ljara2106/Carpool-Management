@@ -26,7 +26,7 @@ include("validate-captcha.php");
 <body>
     <center>
 
-    <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
 
     <br>
 
