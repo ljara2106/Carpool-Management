@@ -32,7 +32,7 @@ include("validate-captcha.php");
 
 
     <form action="login.php" method="post">
-        <label for="email">email</label>
+        <label for="email">Email</label>
         <input type="email" name="email" id="email" size="30"
                value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
         
@@ -43,7 +43,7 @@ include("validate-captcha.php");
 
         <div class="g-recaptcha" data-sitekey="6LdtiwwUAAAAAHKlRpozGAjMEOQLt55sAVNaI12S"></div>
         <div>
-            <?php echo $error_message; ?>
+        <p style="color:tomato;"> <?php echo $error_message; ?></p>
         </div>
 
         <br>
