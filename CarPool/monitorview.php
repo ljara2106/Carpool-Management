@@ -43,7 +43,7 @@ $sec = "5";
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
 
-        <!--<button><font size="6" <a href="search.php">Search Student</a></font>   </button>-->
+
 
         <br>
         <br>
@@ -115,7 +115,7 @@ $sec = "5";
         <br>
         <br>
         <!--<p><a href="logout.php">Log out</a></p>-->
-        <button><font size="3" <a href="logout.php">Log out</a></font>   </button?
+        <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
         
 
     

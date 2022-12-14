@@ -5,6 +5,15 @@ include("validate-captcha.php");
 
 <!DOCTYPE html>
 <html>
+<style>
+@media only screen and (max-width: 100px) {
+.g-recaptcha {
+transform:scale(0.77);
+transform-origin:0 0;
+}
+
+}
+</style>
 <head>
     <title>Login</title>
     <meta charset="UTF-8">

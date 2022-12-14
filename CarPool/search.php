@@ -73,8 +73,7 @@ if (isset($_SESSION["user_id"])) {
 
 
         <br>
-        <br>
-        <br>
+
 
 
        <script>
@@ -188,6 +187,7 @@ if (isset($_SESSION["user_id"])) {
         <br>
         <br>
         <p><a href="logout.php">Log out</a></p>
+        <!--<input type="button" value="Log out" onClick="document.location.href='logout.php'" />-->
         
 
     

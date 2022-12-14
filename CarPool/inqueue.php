@@ -95,7 +95,7 @@ if (isset($_SESSION["user_id"])) {
             ?>
                  
         </table>
-
+        <!-- to set all as picked up function -->      
         <!--<p><a href="actions.php?action=moveAll">Set ALL as picked up</a></p>-->
 
         </div>
@@ -108,7 +108,8 @@ if (isset($_SESSION["user_id"])) {
         <br>
         <br>
         <!--<p><a href="logout.php">Log out</a></p>-->
-        <button><font size="3" <a href="logout.php">Log out</a></font>   </button?
+        <!--<button><font size="3" <a href="logout.php">Log out</a></font></button>-->
+        <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
         
 
     

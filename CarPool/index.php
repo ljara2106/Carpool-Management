@@ -48,8 +48,8 @@ a {
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
 
-        <button> <a href="monitorview.php">Monitor View</a> </button>  |  
-        <button> <a href="inqueue.php">In Queue</a> </button> |  
+        <button> <a href="monitorview.php">Monitor View</a> </button>    
+        <button> <a href="inqueue.php">In Queue</a> </button>   
         <button> <a href="search.php">Search Student</a> </button>
 
 
