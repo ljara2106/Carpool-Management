@@ -17,32 +17,32 @@ if (isset($_SESSION["user_id"])) {
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html>
-    <style>
+<style>
 
-a {
+    a {
     font-size: 25px; /* example size, can be any size, in px, em, rem, % */
-}
+    }
 
-    </style>
+</style>
 
 
 <head>
     <title>Home - CarPool Management</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">-->
+    <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <center>
     <h1>Home - CarPool Management</h1>
     <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
     <br>
     <br>
-</br>
+    <br>
     <?php if (isset($user)): ?>
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
@@ -51,10 +51,6 @@ a {
         <button> <a href="monitorview.php">Monitor View</a> </button>    
         <button> <a href="inqueue.php">In Queue</a> </button>   
         <button> <a href="search.php">Search Student</a> </button>
-
-
-
-
 
 
         <br>
@@ -72,21 +68,13 @@ a {
     <?php endif; ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     </center>
 </body>
+
+<footer>
+    <p>Copyright &copy AppCybernetica.com</a> <?php echo date("Y"); ?></p>
+</footer>
+
 </html>
     
     

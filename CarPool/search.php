@@ -20,7 +20,8 @@ if (isset($_SESSION["user_id"])) {
 <head>
     <title>Search Student - CarPool Management</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">-->
+    <link rel="stylesheet" href="css/dark.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -36,15 +37,6 @@ if (isset($_SESSION["user_id"])) {
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
-
-        <!--<button><font size="6" <a href="search.php">Search Student</a></font>   </button>-->
-
-        <!--// scan the qr code part
-
-          //  scanner.addListener('scan', function(c){
-          //  document.getElementById("text").value=c;
-
-       // });-->
 
        <script src="js/html5-qrcode.min.js"></script>
 
@@ -144,7 +136,7 @@ if (isset($_SESSION["user_id"])) {
                       values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', '0')"; 
                       $result_queue = mysqli_query($mysqli,$add_queue);
     
-                        echo '  <strong><h2 style="background-color:DodgerBlue;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br><br><br>';
+                        echo '  <strong><h2 style="background-color:green;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br><br><br>';
                    
                  } else {
                      // do other stuff...
@@ -153,7 +145,7 @@ if (isset($_SESSION["user_id"])) {
                  $mysqli->close();
 
                  //var_dump($add_queue);
-                // die;         s
+                // die; 
 
              }
 
@@ -214,6 +206,12 @@ if (isset($_SESSION["user_id"])) {
 
     </center>
 </body>
+
+<footer>
+    <p><?php include "includes/footer.php";?></p>
+</footer>
+
+
 </html>
     
     

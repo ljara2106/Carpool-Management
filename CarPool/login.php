@@ -5,32 +5,35 @@ include("validate-captcha.php");
 
 <!DOCTYPE html>
 <html>
+
 <style>
 @media only screen and (max-width: 100px) {
-.g-recaptcha {
-transform:scale(0.77);
-transform-origin:0 0;
+    .g-recaptcha {
+    transform:scale(0.77);
+    transform-origin:0 0;
 }
-
 }
 </style>
+
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
- 
-
-
 </head>
+
 <body>
     <center>
 
     <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
-<br>
-    <h1>Login</h1>
+
     <br>
+
+    <h1>Login</h1>
+
+    <br>
+
     <?php if ($is_invalid): ?>
         <em><p style="color:tomato;">Invalid login, check credentials.</em></p>
     <?php endif; ?>
@@ -60,6 +63,12 @@ transform-origin:0 0;
     </form>
     </center>
 </body>
+
+
+<footer>
+    <p><?php include "includes/footer.php";?></p>
+</footer>
+
 </html>
 
 

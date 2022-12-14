@@ -14,40 +14,46 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
 }
 
+$page = $_SERVER['PHP_SELF'];
+$sec = "5";
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>In Queue - CarPool Management</title>
+    <title>Monitor - CarPool Management</title>
     <meta charset="UTF-8">
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">-->
     <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
+
 <body>
 
 
     <center>
-    <h1><a href = "index.php"> Queue List - CarPool Management</a></h1>
-    <br>
+    <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
+
     <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
-    
+
 </br>
     <?php if (isset($user)): ?>
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
-        <br>
-        <br>
-        <br>
 
+
+
+        <br>
+        <br>
 
         <div class="container">
         <table class ="table">
             <?php
             
                  
-                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0  ";
+                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 10 ";
             
                  $results=mysqli_query($mysqli,$sql);
 
@@ -56,13 +62,13 @@ if (isset($_SESSION["user_id"])) {
                     echo '<thead>
                     <tr>
                     
-                    <th><strong>Student ID</strong></th>
-                    <th><strong>First Name</strong></th>
-                    <th><strong>Last Name</strong></th>
-                    <th><strong>Grade</strong></strig></th>
-                    <th><strong>Teacher</strong></th>
-                    <th><strong>Added @</strong></th>
-                    <th><strong>Action</strong></th>
+                   
+                    <th style="font-size: 20px;"><strong>First Name</strong></th>
+                    <th style="font-size: 20px;"><strong>Last Name</strong></th>
+                    <th style="font-size: 20px;"><strong>Grade</strong></strig></th>
+                    <th style="font-size: 20px;"><strong>Teacher</strong></th>
+                    <th style="font-size: 20px;"><strong>Added @</strong></th>
+                 
                     </tr>
                     </thead>
                     ';
@@ -71,13 +77,13 @@ if (isset($_SESSION["user_id"])) {
                     echo '<tbody>
                     <tr>
                     
-                    <td>'.$row['student_id'].'</td>
-                    <td>'.$row['first_name'].'</td>
-                    <td>'.$row['last_name'].'</td>
-                    <td>'.$row['grade'].'</td>
-                    <td>'.$row['teacher_name'].'</td>
+                    
+                    <td style="font-size: 20px;">'.$row['first_name'].'</td>
+                    <td style="font-size: 20px;">'.$row['last_name'].'</td>
+                    <td style="font-size: 20px;">'.$row['grade'].'</td>
+                    <td style="font-size: 20px;">'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Picked Up</a></td>
+                    <td style="font-size: 20px; color:green"> ⌚🚗 Go! </td>
                     </tr>
                     </tbody>';
                     }
@@ -93,7 +99,7 @@ if (isset($_SESSION["user_id"])) {
             ?>
                  
         </table>
-        <!-- to set all as picked up function -->      
+
         <!--<p><a href="actions.php?action=moveAll">Set ALL as picked up</a></p>-->
 
         </div>
@@ -105,8 +111,10 @@ if (isset($_SESSION["user_id"])) {
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
         <!--<p><a href="logout.php">Log out</a></p>-->
-        <!--<button><font size="3" <a href="logout.php">Log out</a></font></button>-->
         <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
         
 
@@ -119,13 +127,21 @@ if (isset($_SESSION["user_id"])) {
     <?php endif; ?>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     </center>
 </body>
-
-<footer>
-    <p><?php include "includes/footer.php";?></p>
-</footer>
-
 </html>
     
     

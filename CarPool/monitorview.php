@@ -23,17 +23,23 @@ $sec = "5";
 <head>
     <title>Monitor - CarPool Management</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
-
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">-->
+    <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
+<script type="text/javascript">
+    setInterval(function(){
+      $('blink').each(function() {
+        $(this).toggle();
+      });
+    }, 250);
+</script>
 <body>
 
 
     <center>
     <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
-    <br>
 
     <a href="index.php"><img src="/CarPool/img/txlogo.png" alt="Thanksgiving Elementary" ></a>
 
@@ -62,7 +68,7 @@ $sec = "5";
                     echo '<thead>
                     <tr>
                     
-                    <th><strong>Student ID</strong></th>
+                   
                     <th><strong>First Name</strong></th>
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
@@ -77,13 +83,13 @@ $sec = "5";
                     echo '<tbody>
                     <tr>
                     
-                    <td>'.$row['student_id'].'</td>
+                    
                     <td>'.$row['first_name'].'</td>
                     <td>'.$row['last_name'].'</td>
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td> ⌚🚗 Ready </td>
+                    <td style="font-size: 20px; color:green"> ⌚🚗 Go! </td>
                     </tr>
                     </tbody>';
                     }
@@ -127,21 +133,12 @@ $sec = "5";
     <?php endif; ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     </center>
 </body>
+<footer>
+    <p><?php include "includes/footer.php";?></p>
+</footer>
+
 </html>
     
     
