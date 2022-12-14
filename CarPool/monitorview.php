@@ -111,6 +111,9 @@ $sec = "5";
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
         <!--<p><a href="logout.php">Log out</a></p>-->
         <button><font size="3" <a href="logout.php">Log out</a></font>   </button?
         

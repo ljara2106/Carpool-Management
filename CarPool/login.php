@@ -1,38 +1,8 @@
 <?php
+include("validate-captcha.php");
+?> 
 
-$is_invalid = false;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    
-    $mysqli = require __DIR__ . "/database.php";
-    
-    $sql = sprintf("SELECT * FROM user
-                    WHERE email = '%s'",
-                   $mysqli->real_escape_string($_POST["email"]));
-    
-    $result = $mysqli->query($sql);
-    
-    $user = $result->fetch_assoc();
-    
-    if ($user) {
-        
-        if (password_verify($_POST["password"], $user["password_hash"])) {
-            
-            session_start();
-            
-            session_regenerate_id();
-            
-            $_SESSION["user_id"] = $user["id"];
-            
-            header("Location: index.php");
-            exit;
-        }
-    }
-    
-    $is_invalid = true;
-}
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ 
+
+
 </head>
 <body>
     <center>
@@ -49,21 +23,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1>Login</h1>
     <br>
     <?php if ($is_invalid): ?>
-        <em>Invalid login, check credentials.</em>
+        <em><p style="color:tomato;">Invalid login, check credentials.</em></p>
     <?php endif; ?>
 
+
     <br>
     <br>
 
 
-    <form method="post">
+    <form action="login.php" method="post">
         <label for="email">email</label>
         <input type="email" name="email" id="email" size="30"
                value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
         
         <label for="password">Password</label>
         <input type="password" name="password" id="password">
-        
+
+        <br>
+
+        <div class="g-recaptcha" data-sitekey="6LdtiwwUAAAAAHKlRpozGAjMEOQLt55sAVNaI12S"></div>
+        <div>
+            <?php echo $error_message; ?>
+        </div>
+
         <br>
         <button>Log in</button>
     </form>
