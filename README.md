@@ -1,4 +1,4 @@
-# CarPool Manageent
+# CarPool Management
 
 This is carpool management - a simple managment tool for schools to be able to monitor and keep track of school dismissal management via QR code scanner.
 It is supposed to scan the student ID embedded in the QR code that goes in the parent's car windshield.
@@ -8,9 +8,9 @@ Now, all of this display after scanning the unique student's ID and pushed off i
 
 Technologies in this tool:
 
-PHP
-MySQL
-Javascript
-HTML
+-PHP
+-MySQL
+-Javascript
+-HTML
 
 
