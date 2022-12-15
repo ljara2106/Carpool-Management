@@ -37,7 +37,7 @@ validation
     .addField("#password_confirmation", [
         {
             validator: (value, fields) => {
-                return value === fields["#password"].elem.value;
+                return value === fields["#password"].em.value;
             },
             errorMessage: "Passwords should match"
         }

@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION["user_id"])) {
     
-    $mysqli = require __DIR__ . "/database.php";
+    $mysqli = require __DIR__ . "/dbconfig/database.php";
     
     $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
@@ -77,7 +77,7 @@ if (isset($_SESSION["user_id"])) {
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Picked Up</a></td>
+                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Sent</a></td>
                     </tr>
                     </tbody>';
                     }

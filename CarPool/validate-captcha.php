@@ -9,7 +9,7 @@ if(isset($_POST['g-recaptcha-response'])){
     $responseData = json_decode($verifyResponse);
     if ($responseData->success) {
 
-        $mysqli = require __DIR__ . "/database.php";
+        $mysqli = require __DIR__ . "/dbconfig/database.php";
     
         $sql = sprintf("SELECT * FROM user
                         WHERE email = '%s'",
