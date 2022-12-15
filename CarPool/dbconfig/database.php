@@ -2,8 +2,8 @@
 
 $host = "localhost";
 $dbname = "sample_db";
-$username = "your_username";
-$password = "your_password";
+$username = "root";
+$password = "subzero06";
 
 $mysqli = new mysqli(hostname: $host,
                      username: $username,

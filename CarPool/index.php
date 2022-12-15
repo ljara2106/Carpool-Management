@@ -50,7 +50,7 @@ if (isset($_SESSION["user_id"])) {
 
         <button> <a href="monitorview.php">Monitor View</a> </button>    
         <button> <a href="inqueue.php">In Queue</a> </button>   
-        <button> <a href="search.php">Search Student</a> </button>
+        <button> <a href="searchajax.php">Search Student</a> </button>
 
 
         <br>
