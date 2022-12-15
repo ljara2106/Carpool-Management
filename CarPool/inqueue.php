@@ -13,6 +13,8 @@ if (isset($_SESSION["user_id"])) {
     
     $user = $result->fetch_assoc();
 }
+$page = $_SERVER['PHP_SELF'];
+$sec = "5";
 
 ?>
 <!DOCTYPE html>

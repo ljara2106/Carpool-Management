@@ -36,10 +36,8 @@ if (isset($_SESSION["user_id"])) {
 
     <center>
     <h1><a href = "index.php">Search Student - CarPool Management</a></h1>
-    <br>
-    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    <!--<a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>-->
 
-</br>
     <?php if (isset($user)): ?>
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
@@ -47,13 +45,12 @@ if (isset($_SESSION["user_id"])) {
 
        <script src="js/html5-qrcode.min.js"></script>
 
-
        <div style="width: 300px" id="reader"></div>
 
        <script>
             var key_map = {};
             function search_student(search) {
-                //console.log("search", search);
+              
                 if( search in key_map )
                     return;
 
@@ -61,7 +58,7 @@ if (isset($_SESSION["user_id"])) {
 
                 setTimeout(function() {
                     delete key_map[search];
-                }, 3000);
+                }, 4000);
                 $.ajax({
                         url:'searchaction.php',
                         method:'post',
@@ -70,14 +67,27 @@ if (isset($_SESSION["user_id"])) {
                             $("#table-container").html(response);
                         }
                     });
+
+
             }  
+
+         
+            /*function scanEffect(boolean){
+            const soundEffect = new Audio();
+            soundEffect.autoplay = true;
+            // later on when you actually want to play a sound at any point without user interaction
+            soundEffect.src = 'sound/scanned.mp3';
+            }*/
+    
 
             function onScanSuccess(decodedText, decodedResult) {
                 // Handle on success condition with the decoded text or result.
                 console.log(`Scan result: ${decodedText}`, decodedResult);
                 document.getElementById("search").value=decodedText;
                 search_student(decodedText);
-                pause(shouldPauseVideo);
+                //scanEffect(true);
+                playSound();
+                
 
             }
 
@@ -87,14 +97,79 @@ if (isset($_SESSION["user_id"])) {
             }
 
             var html5QrcodeScanner = new Html5QrcodeScanner(
-                "reader", { fps: 10, qrbox: 200});
+                "reader", { fps: 2, qrbox: 200});
             html5QrcodeScanner.render(onScanSuccess, onScanError);
 
 
        </script>
 
+
+<script type="text/javascript" >
+			// Fix iOS Audio Context by Blake Kus https://gist.github.com/kus/3f01d60569eeadefe3a1
+			// MIT license
+			(function() {
+				window.AudioContext = window.AudioContext || window.webkitAudioContext;
+				if (window.AudioContext) {
+					window.audioContext = new window.AudioContext();
+				}
+				var fixAudioContext = function (e) {
+					if (window.audioContext) {
+						// Create empty buffer
+						var buffer = window.audioContext.createBuffer(1, 1, 22050);
+						var source = window.audioContext.createBufferSource();
+						source.buffer = buffer;
+						// Connect to output (speakers)
+						source.connect(window.audioContext.destination);
+						// Play sound
+						if (source.start) {
+							source.start(0);
+						} else if (source.play) {
+							source.play(0);
+						} else if (source.noteOn) {
+							source.noteOn(0);
+						}
+					}
+					// Remove events
+					document.removeEventListener('touchstart', fixAudioContext);
+					document.removeEventListener('touchend', fixAudioContext);
+				};
+				// iOS 6-8
+				document.addEventListener('touchstart', fixAudioContext);
+				// iOS 9
+				document.addEventListener('touchend', fixAudioContext);
+
+                document.addEventListener('touchend', ()=>window.audioContext.resume());
+			})();
+
+			var $status = document.querySelector('#status');
+
+			function playSound () {
+				var path = 'sound/scanned.mp3';
+				var context = window.audioContext;
+				var request = new XMLHttpRequest();
+				//$status.innerHTML = 'Playing ' + path;
+				request.open('GET', path, true);
+				request.responseType = 'arraybuffer';
+				request.addEventListener('load', function (e) {
+					context.decodeAudioData(this.response, function (buffer) {
+						var source = context.createBufferSource();
+						source.buffer = buffer;
+						source.connect(context.destination);
+						source.start(0);
+					});
+				}, false);
+				request.send();
+			}
+
+			setTimeout(playSound, 3000);
+</script>
+
+
+
             <br>
 
+
+        <!-- Function to only search numbers on search bar -->         
        <script>
         function isNumberKey(evt){
         var charCode = (evt.which) ? evt.which : event.keyCode
@@ -108,11 +183,9 @@ if (isset($_SESSION["user_id"])) {
         <script type="text/javascript">   
                    
             $(document).ready(function(){
-                
-                //console.log("init");
+  
                 $("#search").keyup(function(){
-                    var search = $(this).val();                  
-                
+                    var search = $(this).val();
                     search_student(search);
                 
                 });
@@ -120,16 +193,26 @@ if (isset($_SESSION["user_id"])) {
 
         </script>
 
+
+        <!-- Function to play sound on windows desktop / does not work on ios for web -->
+        <!--<script>
+
+            function playSound(url) {
+            const audio = new Audio(url);
+            audio.play();
+            }
+
+        </script>-->
+
+
         <div class="container">
         <form method="POST">
-            <input type="text" placeholder="Search student ID" id="search" name="search" onkeypress="return isNumberKey(event)">
+            <input type="text" placeholder="Student ID" id="search" name="search" onkeypress="return isNumberKey(event)">
 
             <!--<button name="submit">Search</button>-->
             
         </form>
 
-        <br>
-        <br>
         <br>
         <div class="container" id="table-container">       
             <table class ="table" id="table-data">
@@ -149,9 +232,6 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </div>
        
-
-
-
         <br>
         <br>
         <br>
@@ -161,28 +241,11 @@ if (isset($_SESSION["user_id"])) {
         <p><a href="logout.php">Log out</a></p>
         <!--<input type="button" value="Log out" onClick="document.location.href='logout.php'" />-->
         
-
-    
-
     <?php else: ?>
         
         <p><a href="login.php">Log in</a> or <a href="signup.html">sign up</a></p>
         
     <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </center>
 </body>
@@ -193,14 +256,4 @@ if (isset($_SESSION["user_id"])) {
 
 
 </html>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     

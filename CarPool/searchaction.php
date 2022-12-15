@@ -25,6 +25,8 @@ if(isset($_POST['query'])){
 else{
     $stmt=$mysqli->prepare("select * from `students`");
 }
+
+
 $stmt->execute();
 $result=$stmt->get_result();
 
@@ -70,11 +72,12 @@ if($result->num_rows>0){
          values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', '0')"; 
          $result_queue = mysqli_query($mysqli,$add_queue);
 
-          $message = '  <strong><h2 style="background-color:green;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br><br><br>';
+          $message = '<strong><h2 style="background-color:green;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br>';
+
       
     } else {
         // do other stuff...
-       $message = '  <strong><h2 style="background-color:red;"> '  .$first_name.  ' is already in QUEUE list!</h2> </strong><br><br><br>';
+       $message = '<strong><h2 style="background-color:red;"> '  .$first_name.  ' is already in QUEUE list!</h2> </strong><br>';
     }
 
     echo $message;
