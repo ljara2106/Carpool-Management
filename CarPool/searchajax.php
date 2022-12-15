@@ -61,7 +61,7 @@ if (isset($_SESSION["user_id"])) {
 
                 setTimeout(function() {
                     delete key_map[search];
-                }, 300);
+                }, 3000);
                 $.ajax({
                         url:'searchaction.php',
                         method:'post',
@@ -77,6 +77,7 @@ if (isset($_SESSION["user_id"])) {
                 console.log(`Scan result: ${decodedText}`, decodedResult);
                 document.getElementById("search").value=decodedText;
                 search_student(decodedText);
+                pause(shouldPauseVideo);
 
             }
 
@@ -86,7 +87,7 @@ if (isset($_SESSION["user_id"])) {
             }
 
             var html5QrcodeScanner = new Html5QrcodeScanner(
-                "reader", { fps: 2, qrbox: 200});
+                "reader", { fps: 10, qrbox: 200});
             html5QrcodeScanner.render(onScanSuccess, onScanError);
 
 
