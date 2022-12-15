@@ -28,13 +28,7 @@ $sec = "5";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
-<script type="text/javascript">
-    setInterval(function(){
-      $('blink').each(function() {
-        $(this).toggle();
-      });
-    }, 250);
-</script>
+
 <body>
 
 
