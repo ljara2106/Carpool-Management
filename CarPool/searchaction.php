@@ -82,7 +82,7 @@ if($result->num_rows>0){
     
 }
     else{
-        echo "No Records Found!";
+        echo "<h2 class=text-danger>Student data not found</h2>";
     }
     
 

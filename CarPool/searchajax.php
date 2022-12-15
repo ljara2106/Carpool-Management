@@ -77,6 +77,7 @@ if (isset($_SESSION["user_id"])) {
                 console.log(`Scan result: ${decodedText}`, decodedResult);
                 document.getElementById("search").value=decodedText;
                 search_student(decodedText);
+
             }
 
             function onScanError(errorMessage) {
@@ -85,7 +86,7 @@ if (isset($_SESSION["user_id"])) {
             }
 
             var html5QrcodeScanner = new Html5QrcodeScanner(
-                "reader", { fps: 1, qrbox: 200});
+                "reader", { fps: 2, qrbox: 200});
             html5QrcodeScanner.render(onScanSuccess, onScanError);
 
 
