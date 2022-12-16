@@ -49,7 +49,7 @@ if (isset($_SESSION["user_id"])) {
 
         <button> <a href="monitorview-big.php">Monitor View</a> </button>    
         <button> <a href="inqueue.php">In Queue</a> </button>   
-        <button> <a href="searchajax.php">Search Student</a> </button>
+        <button> <a href="search-ajax.php">Search Student</a> </button>
 
         <br>
         <br>
@@ -63,7 +63,7 @@ if (isset($_SESSION["user_id"])) {
 
     <?php else: ?>
         
-        <p><a href="login.php">Log in</a> or <a href="signup.html">sign up</a></p>
+        <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
         
     <?php endif; ?>
 

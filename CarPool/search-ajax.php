@@ -60,7 +60,7 @@ if (isset($_SESSION["user_id"])) {
                     delete key_map[search];
                 }, 4000);
                 $.ajax({
-                        url:'searchaction.php',
+                        url:'search-action.php',
                         method:'post',
                         data:{query:search},
                         success:function(response){
@@ -71,21 +71,13 @@ if (isset($_SESSION["user_id"])) {
 
             }  
 
-         
-            /*function scanEffect(boolean){
-            const soundEffect = new Audio();
-            soundEffect.autoplay = true;
-            // later on when you actually want to play a sound at any point without user interaction
-            soundEffect.src = 'sound/scanned.mp3';
-            }*/
-    
+        
 
             function onScanSuccess(decodedText, decodedResult) {
                 // Handle on success condition with the decoded text or result.
                 console.log(`Scan result: ${decodedText}`, decodedResult);
                 document.getElementById("search").value=decodedText;
                 search_student(decodedText);
-                //scanEffect(true);
                 playSound();
                 
 
@@ -243,7 +235,7 @@ if (isset($_SESSION["user_id"])) {
         
     <?php else: ?>
         
-        <p><a href="login.php">Log in</a> or <a href="signup.html">sign up</a></p>
+        <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
         
     <?php endif; ?>
 
