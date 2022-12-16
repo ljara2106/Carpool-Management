@@ -76,7 +76,7 @@ $sec = "5";
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td><a href="actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Sent</a></td>
+                    <td><a href="inqueue-actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Sent</a></td>
                     </tr>
                     </tbody>';
                     }
@@ -93,7 +93,7 @@ $sec = "5";
                  
         </table>
         <!-- to set all as picked up function -->      
-        <!--<p><a href="actions.php?action=moveAll">Set ALL as picked up</a></p>-->
+        <!--<p><a href="inqueue-actions.php?action=moveAll">Set ALL as picked up</a></p>-->
 
         </div>
 
