@@ -38,7 +38,7 @@ if (isset($_SESSION["user_id"])) {
 
 <body>
     <center>
-    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home" ></a>
     <h1>Home - CarPool Management</h1>
     <br>
     <br>
