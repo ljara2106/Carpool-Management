@@ -38,7 +38,7 @@ if(isset($_POST['g-recaptcha-response'])){
     }
 
     else{
-        $error_message = 'Please check recaptcha';        
+        $error_message = 'Please check reCAPTCHA';        
     }
 }
 

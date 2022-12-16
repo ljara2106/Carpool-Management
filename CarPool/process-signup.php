@@ -24,40 +24,57 @@ if ($_POST["password"] !== $_POST["password_confirmation"]) {
     die("Passwords must match");
 }
 
-$password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-$mysqli = require __DIR__ . "/dbconfig/database.php";
-
-$sql = "INSERT INTO user (name, email, password_hash)
-        VALUES (?, ?, ?)";
-        
-$stmt = $mysqli->stmt_init();
-
-if ( ! $stmt->prepare($sql)) {
-    die("SQL error: " . $mysqli->error);
-}
-
-$stmt->bind_param("sss",
-                  $_POST["name"],
-                  $_POST["email"],
-                  $password_hash);
-                  
-if ($stmt->execute()) {
-
-    header("Location: signup-success.html");
-    exit;
+if(isset($_POST['g-recaptcha-response'])){
     
-} else {
-    
-    if ($mysqli->errno === 1062) {
-        die("email already taken");
-    } else {
-        die($mysqli->error . " " . $mysqli->errno);
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $secret = '6LdtiwwUAAAAAAfXRgEh9zg37goVaeuRL1btdONl';
+    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret .  '&remoteip' . $ip . '&response=' . $_POST['g-recaptcha-response']);
+    $responseData = json_decode($verifyResponse);
+    if ($responseData->success) {
+
+            $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+            $mysqli = require __DIR__ . "/dbconfig/database.php";
+
+            $sql = "INSERT INTO user (name, email, password_hash)
+                    VALUES (?, ?, ?)";
+                    
+            $stmt = $mysqli->stmt_init();
+
+                    if ( ! $stmt->prepare($sql)) {
+                        die("SQL error: " . $mysqli->error);
+                    }
+
+                    $stmt->bind_param("sss",
+                                    $_POST["name"],
+                                    $_POST["email"],
+                                    $password_hash);
+                                    
+            if ($stmt->execute()) {
+
+                header("Location: signup-success.html");
+                exit;
+                
+            } else {
+                
+                if ($mysqli->errno === 1062) {
+                    die("email already taken");
+                } else {
+                    die($mysqli->error . " " . $mysqli->errno);
+                }
+            }
+
+
+
+
+
     }
+
+    else{
+        die("Please check reCAPTCHA");      
+    }
+
 }
-
-
-
 
 
 

@@ -42,7 +42,6 @@ if (isset($_SESSION["user_id"])) {
     <h1>Home - CarPool Management</h1>
     <br>
     <br>
-    <br>
     <?php if (isset($user)): ?>
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
@@ -52,7 +51,8 @@ if (isset($_SESSION["user_id"])) {
         <button> <a href="inqueue.php">In Queue</a> </button>   
         <button> <a href="searchajax.php">Search Student</a> </button>
 
-
+        <br>
+        <br>
         <br>
         <br>
         <br>

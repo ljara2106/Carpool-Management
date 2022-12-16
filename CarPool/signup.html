@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
     <script src="js/validation.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <body>
     <center>
@@ -37,6 +38,9 @@
             <label for="password_confirmation">Repeat password</label>
             <input type="password" id="password_confirmation" name="password_confirmation">
         </div>
+        <br>
+        <div class="g-recaptcha" data-sitekey="6LdtiwwUAAAAAHKlRpozGAjMEOQLt55sAVNaI12S"></div>
+        
         <br>
         <button>Sign up</button>
     </form>
