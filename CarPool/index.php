@@ -38,8 +38,8 @@ if (isset($_SESSION["user_id"])) {
 
 <body>
     <center>
-    <h1>Home - CarPool Management</h1>
     <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
+    <h1>Home - CarPool Management</h1>
     <br>
     <br>
     <br>
@@ -48,7 +48,7 @@ if (isset($_SESSION["user_id"])) {
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
 
-        <button> <a href="monitorview.php">Monitor View</a> </button>    
+        <button> <a href="monitorview-big.php">Monitor View</a> </button>    
         <button> <a href="inqueue.php">In Queue</a> </button>   
         <button> <a href="searchajax.php">Search Student</a> </button>
 
