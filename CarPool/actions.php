@@ -77,7 +77,7 @@ class actions {
                 }
 
                 $host = $_SERVER['HTTP_HOST'];
-                header('Location: http://'.$host.'/CarPool/inqueue.php');exit;
+                header('Location: http://'.$host.'/carpool/inqueue.php');exit;
 
                 
                
