@@ -10,6 +10,7 @@ Pros:
 - Privacy for student's information.
 - No walkie talkies.
 - No more paper tag prinout (can use QR code on phone)
+- reCaptcha implemented (keep bots away)
 
 Cons:
 - Internet required...
@@ -22,5 +23,10 @@ Technologies in this tool:
 -Javascript
 -HTML
 -Ajax
+
+
+
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/20650464/209595582-b9da5f1a-d198-4b68-842a-d335ec5cd552.gif)
 
 
