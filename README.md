@@ -27,6 +27,7 @@ Technologies in this tool:
 
 
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/20650464/209595582-b9da5f1a-d198-4b68-842a-d335ec5cd552.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/20650464/209595806-8379244a-5913-49a9-9624-82f82b5b47fe.gif)
+
 
 
