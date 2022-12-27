@@ -31,3 +31,9 @@ Technologies in this tool:
 
 
 
+Big thanks to:
+- https://blog.minhazav.dev/research/html5-qrcode (QR scanner tech)
+- https://gist.github.com/kus/3f01d60569eeadefe3a1 (fix for sounds on iOS)
+
+
+
