@@ -21,5 +21,6 @@ Technologies in this tool:
 -MySQL
 -Javascript
 -HTML
+-Ajax
 
 
