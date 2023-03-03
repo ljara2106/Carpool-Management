@@ -4,7 +4,7 @@ $error_message = '';
 if(isset($_POST['g-recaptcha-response'])){
     
     $ip = $_SERVER['REMOTE_ADDR'];
-    $secret = 'YOU_SECRET_KEY_HERE';
+    $secret = 'YOU_SECRET_KEY_HERE_';
     $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret .  '&remoteip' . $ip . '&response=' . $_POST['g-recaptcha-response']);
     $responseData = json_decode($verifyResponse);
     if ($responseData->success) {
