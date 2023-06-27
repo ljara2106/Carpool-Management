@@ -2,6 +2,7 @@
 
 session_start();
 
+
 if (isset($_SESSION["user_id"])) {
     
     $mysqli = require __DIR__ . "/dbconfig/database.php";
@@ -15,7 +16,7 @@ if (isset($_SESSION["user_id"])) {
 }
 
 $page = $_SERVER['PHP_SELF'];
-$sec = "5";
+$sec = "3";
 
 ?>
 <!DOCTYPE html>
@@ -33,26 +34,31 @@ $sec = "5";
 
 
     <center>
-    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home" ></a>
+    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
     <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
-    <br>
-    
 
+
+    <br>
     <?php if (isset($user)): ?>
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
         <br>
 
-
         <div class="container">
         <table class ="table">
             <?php
+                // if user logged in is a teacher with teacher id assigned, display only students assigned to that teacher
+                if($user['teacher_id']!=0){
+                    $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 and teacher_id=".$user['teacher_id']." LIMIT 13 ";
+                    $results=mysqli_query($mysqli,$sql);
+                }
+                 else{
+                    $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 13 ";
             
-                 
-                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 13 ";
-            
-                 $results=mysqli_query($mysqli,$sql);
+                    $results=mysqli_query($mysqli,$sql);
+                 }
+               
 
                 if($result){
                    if(mysqli_num_rows($results)>0){
@@ -60,11 +66,11 @@ $sec = "5";
                     <tr>
                     
                    
-                    <th style="font-size: 20px;"><strong>First Name</strong></th>
-                    <th style="font-size: 20px;"><strong>Last Name</strong></th>
-                    <th style="font-size: 20px;"><strong>Grade</strong></strig></th>
-                    <th style="font-size: 20px;"><strong>Teacher</strong></th>
-                    <th style="font-size: 20px;"><strong>Added @</strong></th>
+                    <th><strong>First Name</strong></th>
+                    <th><strong>Last Name</strong></th>
+                    <th><strong>Grade</strong></strig></th>
+                    <th><strong>Teacher</strong></th>
+                    <th><strong>Added @</strong></th>
                  
                     </tr>
                     </thead>
@@ -75,10 +81,10 @@ $sec = "5";
                     <tr>
                     
                     
-                    <td style="font-size: 20px;">'.$row['first_name'].'</td>
-                    <td style="font-size: 20px;">'.$row['last_name'].'</td>
-                    <td style="font-size: 20px;">'.$row['grade'].'</td>
-                    <td style="font-size: 20px;">'.$row['teacher_name'].'</td>
+                    <td>'.$row['first_name'].'</td>
+                    <td>'.$row['last_name'].'</td>
+                    <td>'.$row['grade'].'</td>
+                    <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
                     <td style="font-size: 20px; color:green"> ⌚🚗 Go! </td>
                     </tr>
@@ -124,21 +130,12 @@ $sec = "5";
     <?php endif; ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     </center>
 </body>
+<footer>
+    <p><?php include "includes/footer.php";?></p>
+</footer>
+
 </html>
     
     

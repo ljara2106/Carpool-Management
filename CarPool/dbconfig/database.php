@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
+$host = "127.0.0.1";
 $dbname = "sample_db";
 $username = "root";
-$password = "mypassword";
+$password = "";
 
 $mysqli = new mysqli(hostname: $host,
                      username: $username,

@@ -110,6 +110,7 @@ if (isset($_SESSION["user_id"])) {
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
                     <th><strong>Teacher</strong></th>
+                    <th><strong>Teacher ID</strong></th>
                     </tr>
                     </thead>
                     ';
@@ -123,6 +124,7 @@ if (isset($_SESSION["user_id"])) {
                     <td>'.$row['last_name'].'</td>
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
+                    <td>'.$row['teacher_id'].'</td>
                     </tr>
                     </tbody>';   
                     
@@ -132,8 +134,8 @@ if (isset($_SESSION["user_id"])) {
                  $check_queue =  $mysqli->query("SELECT student_id FROM `inqueue`  WHERE student_id = '$search' and DATE(datetime_added) = CURDATE()");
                  if($check_queue->num_rows == 0) {
                       // row not found, do stuff...
-                      $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `picked_up`) 
-                      values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', '0')"; 
+                      $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `teacher_id`, `picked_up`) 
+                      values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', $row[teacher_id], '0')"; 
                       $result_queue = mysqli_query($mysqli,$add_queue);
     
                         echo '  <strong><h2 style="background-color:green;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br><br><br>';

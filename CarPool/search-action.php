@@ -40,6 +40,7 @@ if($result->num_rows>0){
     <th><strong>Last Name</strong></th>
     <th><strong>Grade</strong></strig></th>
     <th><strong>Teacher</strong></th>
+    
     </tr>
     </thead> 
     <tbody>";
@@ -55,6 +56,7 @@ if($result->num_rows>0){
             <td>'.$row['last_name'].'</td>
             <td>'.$row['grade'].'</td>
             <td>'.$row['teacher_name'].'</td>
+            
         </tr>';
 
         
@@ -68,8 +70,8 @@ if($result->num_rows>0){
     if($check_queue->num_rows == 0) {
            $row = $insert_row;
          // row not found, do stuff...
-         $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `picked_up`) 
-         values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', '0')"; 
+         $add_queue = "insert into `inqueue` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `teacher_id`, `picked_up`) 
+         values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', $row[teacher_id], '0')"; 
          $result_queue = mysqli_query($mysqli,$add_queue);
 
           $message = '<strong><h2 style="background-color:green;"> '  .$row['first_name'].  ' added to QUEUE list!</h2> </strong><br>';

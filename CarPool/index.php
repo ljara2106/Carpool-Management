@@ -5,14 +5,19 @@ session_start();
 if (isset($_SESSION["user_id"])) {
     
     $mysqli = require __DIR__ . "/dbconfig/database.php";
+
+    $stmt = $mysqli->prepare("SELECT * FROM user WHERE id = ?");
     
-    $sql = "SELECT * FROM user
-            WHERE id = {$_SESSION["user_id"]}";
-            
-    $result = $mysqli->query($sql);
+    // "s" indicates that the parameter is a string, replace with "i" for integer, "d" for double, "b" for blob
+    $stmt->bind_param("s", $_SESSION["user_id"]);
+
+    $stmt->execute();
+    
+    $result = $stmt->get_result();
     
     $user = $result->fetch_assoc();
 }
+
 
 ?>
 
@@ -42,14 +47,31 @@ if (isset($_SESSION["user_id"])) {
     <h1>Home - CarPool Management</h1>
     <br>
     <br>
+    
     <?php if (isset($user)): ?>
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
 
-        <button> <a href="monitorview-big.php">Monitor View</a> </button>    
-        <button> <a href="inqueue.php">In Queue</a> </button>   
-        <button> <a href="search-ajax.php">Search Student</a> </button>
+        <?php
+            // Check if the 'teacher_id' key exists in the user array
+            // and if its value is not zero
+            if(isset($user['teacher_id']) && $user['teacher_id'] != 0) {
+                // If user is a teacher, display only monitorview-classroom.php
+        ?>
+                <button> <a href="monitorview-classroom.php">Monitor View (By Teacher)</a> </button>  <br>
+
+        <?php
+            } else {
+                // If user is not a teacher, display all other .php pages
+        ?>
+                <button> <a href="monitorview-big.php">Monitor View</a> </button> <br>  
+                <button> <a href="inqueue.php">In Queue</a> </button>   <br>
+                <button> <a href="search-ajax.php">Search Student</a> </button> <br>
+
+        <?php
+            }
+        ?>
 
         <br>
         <br>
@@ -66,6 +88,8 @@ if (isset($_SESSION["user_id"])) {
         <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
         
     <?php endif; ?>
+
+
 
 
     </center>

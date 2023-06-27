@@ -32,8 +32,8 @@ class actions {
                 $row=mysqli_fetch_assoc($check_pickedup);
                 
                 // row not found, do stuff...
-                $add_pickedup = "insert into `pickedup` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`) 
-                values ($student_id, '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]')"; 
+                $add_pickedup = "insert into `pickedup` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `teacher_id`) 
+                values ($student_id, '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', $row[teacher_id])"; 
                 $result_queue = mysqli_query($this->db,$add_pickedup);
 
                 
@@ -42,7 +42,7 @@ class actions {
                 $result_queue = mysqli_query($this->db,$update_queue);
 
                 $host = $_SERVER['HTTP_HOST'];
-                header('Location: http://'.$host.'/carpool/inqueue.php');exit;
+                header('Location: http://'.$host.'/inqueue.php');exit; //real location: header('Location: http://'.$host.'/carpool/inqueue.php');exit;
             } else {
                 // do other stuff...
             }
@@ -64,8 +64,8 @@ class actions {
             if (mysqli_num_rows($check_pickedup) > 0) {
                 while ($row=mysqli_fetch_assoc($check_pickedup)){
                 // row not found, do stuff...
-                $add_pickedup = "insert into `pickedup` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`) 
-                values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]')"; 
+                $add_pickedup = "insert into `pickedup` ( `student_id`, `first_name`, `last_name`, `grade`, `teacher_name`, `teacher_id`) 
+                values ($row[student_id], '$row[first_name]','$row[last_name]', $row[grade],'$row[teacher_name]', $row[teacher_id])"; 
                 $result_queue = mysqli_query($this->db,$add_pickedup);
 
                 
@@ -77,7 +77,7 @@ class actions {
                 }
 
                 $host = $_SERVER['HTTP_HOST'];
-                header('Location: http://'.$host.'/carpool/inqueue.php');exit;
+                header('Location: http://'.$host.'/inqueue.php');exit; //real location = header('Location: http://'.$host.'/carpool/inqueue.php');exit; 
 
                 
                

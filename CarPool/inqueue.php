@@ -14,7 +14,7 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
 }
 $page = $_SERVER['PHP_SELF'];
-$sec = "5";
+$sec = "3";
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,15 @@ $sec = "5";
         
         <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
         <br>
-        <br>
+
+        <!-- display queue total list count -->
+        <?php
+            $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 ";
+            $results=mysqli_query($mysqli,$sql);
+            $count=mysqli_num_rows($results);
+            echo "<h2>Total in Queue: $count</h2>";
+        ?>
+        </br>
 
 
         <div class="container">
@@ -46,7 +54,7 @@ $sec = "5";
             <?php
             
                  
-                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0  ";
+                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 30 ";
             
                  $results=mysqli_query($mysqli,$sql);
 
@@ -54,8 +62,8 @@ $sec = "5";
                    if(mysqli_num_rows($results)>0){
                     echo '<thead>
                     <tr>
-                    
-                    <th><strong>Student ID</strong></th>
+                    <th><strong>Queue ID</strong></th>
+                    <th><strong>Student ID</strong></th>             
                     <th><strong>First Name</strong></th>
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
@@ -69,7 +77,7 @@ $sec = "5";
                     while($row=mysqli_fetch_assoc($results)){
                     echo '<tbody>
                     <tr>
-                    
+                    <td>'.$row['queue_id'].'</td>
                     <td>'.$row['student_id'].'</td>
                     <td>'.$row['first_name'].'</td>
                     <td>'.$row['last_name'].'</td>
@@ -135,5 +143,4 @@ $sec = "5";
     
     
     
-    
-    
+   

@@ -71,10 +71,3 @@ include("validate-captcha.php");
 
 </html>
 
-
-
-
-
-
-
-

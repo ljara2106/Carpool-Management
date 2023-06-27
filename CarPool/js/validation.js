@@ -34,14 +34,29 @@ validation
             rule: "password"
         }
     ])
+    // .addField("#password_confirmation", [
+    //     {
+    //         validator: (value, fields) => {
+    //             return value === fields["#password"].value;
+    //         },
+    //         errorMessage: "Passwords should match"
+    //     }
+    // ])
+
+    //In this revised code, we're using document.querySelector("#password").value to get the value of the password field directly. 
+    //The querySelector method allows us to select elements from the document using CSS selectors. 
+    //Here, we're using the ID selector (#password) to get the password input field.
     .addField("#password_confirmation", [
         {
-            validator: (value, fields) => {
-                return value === fields["#password"].em.value;
+            validator: (value) => {
+                const passwordValue = document.querySelector("#password").value;
+                return value === passwordValue;
             },
             errorMessage: "Passwords should match"
         }
     ])
+    
+    
     .onSuccess((event) => {
         document.getElementById("signup").submit();
     });

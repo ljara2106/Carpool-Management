@@ -13,7 +13,6 @@ if (isset($_SESSION["user_id"])) {
     
     $user = $result->fetch_assoc();
 }
-
 $page = $_SERVER['PHP_SELF'];
 $sec = "5";
 
@@ -21,22 +20,19 @@ $sec = "5";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Monitor - CarPool Management</title>
+    <title>In Queue - CarPool Management</title>
     <meta charset="UTF-8">
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">-->
     <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
-
 <body>
 
 
     <center>
-    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>
-    <h1><a href = "index.php">Monitor - CarPool Management</a></h1>
-
-
+    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
+    <h1><a href = "index.php"> Queue List - CarPool Management</a></h1>
     <br>
     <?php if (isset($user)): ?>
         
@@ -44,12 +40,21 @@ $sec = "5";
         <br>
         <br>
 
+        <!-- display queue list count -->
+        <?php
+            $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 ";
+            $results=mysqli_query($mysqli,$sql);
+            $count=mysqli_num_rows($results);
+            echo "<h2>Queue List Total Count: $count</h2>";
+        ?>
+
+
         <div class="container">
         <table class ="table">
             <?php
             
                  
-                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 10 ";
+                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 30 ";
             
                  $results=mysqli_query($mysqli,$sql);
 
@@ -57,14 +62,14 @@ $sec = "5";
                    if(mysqli_num_rows($results)>0){
                     echo '<thead>
                     <tr>
-                    
-                   
+                    <th><b>Queue ID</b></th>
+                    <th><strong>Student ID</strong></th>             
                     <th><strong>First Name</strong></th>
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></strig></th>
                     <th><strong>Teacher</strong></th>
                     <th><strong>Added @</strong></th>
-                 
+                    <th><strong>Action</strong></th>
                     </tr>
                     </thead>
                     ';
@@ -72,14 +77,14 @@ $sec = "5";
                     while($row=mysqli_fetch_assoc($results)){
                     echo '<tbody>
                     <tr>
-                    
-                    
+                    <td>'.$row['queue_id'].'</td>
+                    <td>'.$row['student_id'].'</td>
                     <td>'.$row['first_name'].'</td>
                     <td>'.$row['last_name'].'</td>
                     <td>'.$row['grade'].'</td>
                     <td>'.$row['teacher_name'].'</td>
                     <td>'.$row['datetime_added'].'</td>
-                    <td style="font-size: 20px; color:green"> ⌚🚗 Go! </td>
+                    <td><a href="inqueue-actions.php?action=movetoPickedup&student_id='.$row['student_id'].'">✔️ Sent</a></td>
                     </tr>
                     </tbody>';
                     }
@@ -95,8 +100,8 @@ $sec = "5";
             ?>
                  
         </table>
-
-        <!--<p><a href="actions.php?action=moveAll">Set ALL as picked up</a></p>-->
+        <!-- to set all as picked up function -->      
+        <!--<p><a href="inqueue-actions.php?action=moveAll">Set ALL as picked up</a></p>-->
 
         </div>
 
@@ -107,10 +112,8 @@ $sec = "5";
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
         <!--<p><a href="logout.php">Log out</a></p>-->
+        <!--<button><font size="3" <a href="logout.php">Log out</a></font></button>-->
         <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
         
 
@@ -125,6 +128,7 @@ $sec = "5";
 
     </center>
 </body>
+
 <footer>
     <p><?php include "includes/footer.php";?></p>
 </footer>
