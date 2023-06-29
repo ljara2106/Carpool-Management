@@ -1,2 +1,2 @@
 Sample database script for your MySQL database.
-remove it from your server file apps after import is done.
+remove it from your server file apps after import is done...
