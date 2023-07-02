@@ -8,6 +8,7 @@ Now, all of the student's information gets displayed after scanning the unique s
 
 Pros:
 - Privacy for student's information.
+- Students can stay in their classroom and teacher can see who of their students are on queue.
 - No more walkie-talkies.
 - No more paper tag printout (can use QR code on phone)
 - reCAPTCHA implemented (keep mean bots away)
