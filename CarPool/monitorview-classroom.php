@@ -54,7 +54,7 @@ $sec = "3";
                     $results=mysqli_query($mysqli,$sql);
                 }
                  else{
-                    $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 13 ";
+                    $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 15 ";
             
                     $results=mysqli_query($mysqli,$sql);
                  }
