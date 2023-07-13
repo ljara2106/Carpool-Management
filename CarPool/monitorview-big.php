@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"])) {
 }
 
 $page = $_SERVER['PHP_SELF'];
-$sec = "3";
+$sec = "2";
 
 ?>
 <!DOCTYPE html>
