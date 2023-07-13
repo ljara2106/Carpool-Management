@@ -50,7 +50,7 @@ $sec = "3";
             <?php
                 // if user logged in is a teacher with teacher id assigned, display only students assigned to that teacher
                 if($user['teacher_id']!=0){
-                    $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 and teacher_id=".$user['teacher_id']." LIMIT 13 ";
+                    $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 and teacher_id=".$user['teacher_id']." LIMIT 15 ";
                     $results=mysqli_query($mysqli,$sql);
                 }
                  else{

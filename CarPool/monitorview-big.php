@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"])) {
 }
 
 $page = $_SERVER['PHP_SELF'];
-$sec = "5";
+$sec = "3";
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ $sec = "5";
             <?php
             
                  
-                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 13 ";
+                 $sql="SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 30 ";
             
                  $results=mysqli_query($mysqli,$sql);
 
