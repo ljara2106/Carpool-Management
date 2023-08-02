@@ -66,7 +66,7 @@ if($result->num_rows>0){
     $message = '';
 
     //add search result to inqueue table
-    $check_queue =  $mysqli->query("SELECT * FROM `inqueue`  WHERE student_id = '$search' and DATE(datetime_added) = CURDATE()");
+    $check_queue =  $mysqli->query("SELECT * FROM `inqueue`  WHERE student_id = '$search' and student_id != '999' and DATE(datetime_added) = CURDATE()");
     if($check_queue->num_rows == 0) {
            $row = $insert_row;
          // row not found, do stuff...
