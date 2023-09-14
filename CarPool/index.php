@@ -1,35 +1,33 @@
 <?php
-
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    
-    $mysqli = require __DIR__ . "/dbconfig/database.php";
-
-    $stmt = $mysqli->prepare("SELECT * FROM user WHERE id = ?");
-    
-    // "s" indicates that the parameter is a string, replace with "i" for integer, "d" for double, "b" for blob
-    $stmt->bind_param("s", $_SESSION["user_id"]);
-
+    // Include the database configuration
+    require __DIR__ . "/dbconfig/database.php"; // Adjust the path as needed
+    $sql = "SELECT * FROM user WHERE id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $_SESSION["user_id"]);
     $stmt->execute();
-    
     $result = $stmt->get_result();
-    
     $user = $result->fetch_assoc();
+    $stmt->close();
 }
-
-
 ?>
 
 
 <!DOCTYPE html>
 <html>
 <style>
-
     a {
-    font-size: 25px; /* example size, can be any size, in px, em, rem, % */
+        font-size: 25px;
+        /* example size, can be any size, in px, em, rem, % */
     }
 
+    .WarningMsg {
+        font-size: 10px;
+        /* example size, can be any size, in px, em, rem, % */
+        margin: 20px, 10%, 0px, 10%;
+    }
 </style>
 
 
@@ -42,52 +40,59 @@ if (isset($_SESSION["user_id"])) {
 </head>
 
 <body>
+
+    <br>
+    <br>
+
+
     <center>
-    <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home" ></a>
-    <h1>Home - CarPool Management</h1>
-    <br>
-    <br>
-    
-    <?php if (isset($user)): ?>
-        
-        <p>Hello, Welcome :  <?= htmlspecialchars($user["name"]) ?></p>
+
+        <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
+        <h1>Home - CarPool Management</h1>
+        <br>
         <br>
 
-        <?php
+        <?php if (isset($user)) : ?>
+
+            <p>Hello, Welcome : <?= htmlspecialchars($user["name"]) ?></p>
+            <br>
+
+            <?php
             // Check if the 'teacher_id' key exists in the user array
             // and if its value is not zero
-            if(isset($user['teacher_id']) && $user['teacher_id'] != 0) {
+            if (isset($user['teacher_id']) && $user['teacher_id'] != 0) {
                 // If user is a teacher, display only monitorview-classroom.php
-        ?>
-                <button> <a href="monitorview-classroom.php">Monitor View (By Teacher)</a> </button>  <br>
+            ?>
+                <button> <a href="monitorview-classroom.php">Monitor View (By Teacher)</a> </button> <br>
 
-        <?php
+            <?php
             } else {
                 // If user is not a teacher, display all other .php pages
-        ?>
-                <button> <a href="monitorview-big.php">Monitor View</a> </button> <br>  
-                <button> <a href="inqueue.php">In Queue</a> </button>   <br>
+            ?>
+                <button> <a href="monitorview-big.php">Monitor View</a> </button> <br>
+                <button> <a href="inqueue.php">In Queue</a> </button> <br>
+                <button> <a href="inqueue-report.php">Time Report</a> </button> <br>
                 <button> <a href="search-ajax.php">Search Student</a> </button> <br>
 
-        <?php
+            <?php
             }
-        ?>
+            ?>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <p><a href="logout.php">Log out</a></p>
-        
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p><a href="logout.php">Log out</a></p>
 
-    
 
-    <?php else: ?>
-        
-        <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
-        
-    <?php endif; ?>
+
+
+        <?php else : ?>
+
+            <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
+
+        <?php endif; ?>
 
 
 
@@ -100,14 +105,4 @@ if (isset($_SESSION["user_id"])) {
 </footer>
 
 </html>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
