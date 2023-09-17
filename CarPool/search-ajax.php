@@ -229,11 +229,18 @@ if (isset($_SESSION["user_id"])) {
                 <br>
                 <br>
                 <br>
-                <p><a href="logout.php">Log out</a></p>
-                <!--<input type="button" value="Log out" onClick="document.location.href='logout.php'" />-->
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!--<p><a href="logout.php">Log out</a></p>-->
+                <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
 
             <?php else : ?>
-
+                <br>
+                <br>
                 <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--></p>
 
             <?php endif; ?>
