@@ -43,7 +43,6 @@ $sec = 3;
                     <!-- Table content will be loaded dynamically -->
                 </table>
             </div>
-
             <br>
             <br>
             <br>

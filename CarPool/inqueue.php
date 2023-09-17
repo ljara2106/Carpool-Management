@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (isset($_SESSION["user_id"])) {
@@ -14,9 +13,6 @@ if (isset($_SESSION["user_id"])) {
     $stmt->close();
 }
 
-$page = $_SERVER['PHP_SELF'];
-$sec = "3";
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,18 +21,58 @@ $sec = "3";
         background-color: gray !important;
     }
 </style>
+
+<head>
+    <title>In Queue - CarPool Management</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/dark.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <script>
-    /**function toggleHighlight(rowId) {
-        var row = document.getElementById(rowId);
-        if (row) {
-            row.classList.toggle("selected-row");
+    function logoutAndClearLocalStorage() {
+        // Clear localStorage here
+        localStorage.clear();
+        // Redirect to the logout page
+        document.location.href = 'logout.php';
+    }
+</script>
+
+<script>
+    // Function to toggle checkbox state and update database
+    function toggleCheckbox(queueId, studentId, el) {
+        var isChecked = el.checked ? 1 : 0;
+        var url = 'inqueue-actions.php?action=toggleCheckbox&queue_id=' + queueId + '&student_id=' + studentId + '&checkbox_state=' + isChecked;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                //console.log('Checkbox state updated:', data);
+            }).catch(error => {
+                // checkbox unchecked
+                //console.log('Checkbox state updated:', error);
+                el.checked = false;
+            })
+    }
+
+    // Function to confirm removal of student from queue
+    function confirmRemove(queueId, studentId) {
+        var confirmation = confirm("Are you sure you want to remove Student ID " + studentId + " from queue ID " + queueId + "?" + "\n\n" + "Press OK to confirm.");
+        if (confirmation) {
+            // If user confirms, redirect to the removal action
+            window.location.href = 'inqueue-actions.php?action=removeStudent&queue_id=' + queueId;
+        } else {
+            // If user cancels, do nothing
+            return false;
         }
-    }**/
+    }
 
     // Function to toggle row highlight and store selection in localStorage
     function toggleHighlight(rowId) {
         var row = document.getElementById(rowId);
         if (row) {
+            // Check if the row is for student ID 999
+            if (row.style.backgroundColor === 'red') {
+                return; // Don't toggle if it's a red-highlighted row
+            }
             row.classList.toggle("selected-row");
             var isSelected = row.classList.contains("selected-row");
             if (isSelected) {
@@ -44,177 +80,87 @@ $sec = "3";
             } else {
                 localStorage.removeItem(rowId);
             }
+        } else {
+            //console.log('Row element not found for ID:', rowId);
         }
     }
 
-    // Function to restore selected rows on page load
+    //Function to restore selected rows on page load
     function restoreSelectedRows() {
         var selectedRows = Object.keys(localStorage);
+        //console.log(selectedRows);
         selectedRows.forEach(function(rowId) {
             var row = document.getElementById(rowId);
+            //console.log(row);
             if (row) {
                 row.classList.add("selected-row");
+                //console.log("added to row", rowId);
+            } else {
+                //console.log('Row element not found for ID:', rowId);
             }
         });
     }
-
-    // Call the restoreSelectedRows function on page load
-    document.addEventListener("DOMContentLoaded", restoreSelectedRows);
-
-
-
-    // Function to toggle checkbox state and update database
-    function toggleCheckbox(queueId, studentId, el) {
-
-        var isChecked = el.checked ? 1 : 0;
-        var url = 'inqueue-actions.php?action=toggleCheckbox&queue_id=' + queueId + '&student_id=' + studentId + '&checkbox_state=' + isChecked;
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Checkbox state updated:', data);
-            }).catch(error => {
-                // checkbox unchecked
-                console.log('Checkbox state updated:', error);
-                el.checked = false;
-            })
-
-    }
 </script>
 
-<head>
-    <title>In Queue - CarPool Management</title>
-    <meta charset="UTF-8">
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">-->
-    <link rel="stylesheet" href="css/dark.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="<?php echo $sec ?>;URL='<?php echo $page ?>'">
-</head>
+<script>
+    // Function to load table data via AJAX
+    function loadTableData() {
+        fetch('/ajax/inqueue_data.php') // Fetch both data and count in a single request
+            .then(response => response.text()) // Parse the response as plain text
+            .then(data => {
+                const [tableData, count] = data.split("|||"); // Split the response into table data and count
+
+                // Update table data
+                document.querySelector("#queueTable tbody").innerHTML = tableData;
+
+                // Update the count element
+                const countElement = document.querySelector("#queueCountNumber");
+                if (countElement) {
+                    countElement.innerText = count;
+                }
+                // Restore selected rows
+                restoreSelectedRows();
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+            });
+
+    }
+    // Call loadTableData initially and set an interval for auto-refresh
+    loadTableData();
+    setInterval(loadTableData, 3000); // Refresh every 3 seconds
+</script>
 
 <body>
-
-
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
         <h1><a href="index.php"> Queue List - CarPool Management</a></h1>
         <br>
         <?php if (isset($user)) : ?>
-
             <p>Hello, Welcome : <?= htmlspecialchars($user["name"]) ?></p>
             <br>
-
-            <!-- display queue total list count -->
-            <?php
-            $sql = "SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 and student_id != 999";
-            $results = mysqli_query($mysqli, $sql);
-            $count = mysqli_num_rows($results);
-            echo "<h2>Total in Queue: $count</h2>";
-            ?>
+            <!-- display a count of the number of students in the queue -->
+            <h2 id="queueCount" style="text-align: center;">Total in Queue: <span id="queueCountNumber">0</span></h2>
             </br>
-
-
             <div class="container">
-                <table class="table">
-                    <?php
 
-
-                    $sql = "SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 52 ";
-
-                    $results = mysqli_query($mysqli, $sql);
-
-                    if ($result) {
-                        if (mysqli_num_rows($results) > 0) {
-                            echo '<thead>
-                    <tr>
-                    <th><strong> </strong></th>
-                    <th><strong>Queue ID</strong></th>
-                    <th><strong>Student ID</strong></th>             
-                    <th><strong>First Name</strong></th>
-                    <th><strong>Last Name</strong></th>
-                    <th><strong>Grade</strong></strong></th>
-                    <th><strong>Teacher</strong></th>
-                    
-                    <th><strong>Action</strong></th>
-                    </tr>
-                    </thead>
-                    ';
-
-
-                            while ($row = mysqli_fetch_assoc($results)) {
-                                $highlightStyle = ($row['student_id'] == 999) ? 'background-color: red;' : '';
-                                $rowId = 'row_' . $row['queue_id'];
-                                $isChecked = ($row['checkbox_state'] == 1) ? 'checked' : '';
-                                echo '<tbody id="' . $rowId . '">
-                    <tr onclick="toggleHighlight(\'' . $rowId . '\')" style="' . $highlightStyle . '">
-                    <td><input type="checkbox" onclick="toggleCheckbox(' . $row['queue_id'] . ', ' . $row['student_id'] . ', this)" ' . $isChecked . '></td> 
-  
-                    <td>' . $row['queue_id'] . '</td>
-                    <td>' . $row['student_id'] . '</td>
-                    <td>' . $row['first_name'] . '</td>
-                    <td>' . $row['last_name'] . '</td>
-                    <td>' . $row['grade'] . '</td>
-                    <td>' . $row['teacher_name'] . '</td>
-                    <td>';
-
-                                if ($row['student_id'] != 999) {
-                                    echo '<a href="inqueue-actions.php?action=movetoPickedup&student_id=' . $row['student_id'] . '">✔️ Sent</a>';
-                                }
-
-                                echo '</td></tr></tbody>';
-                            }
-                        } else {
-                            echo '<h2 class=text-danger>No student data found, please add student to the queue.</h2>';
-                        }
-                    }
-
-
-                    ?>
-
+                <table class="table" id="queueTable">
+                    <!-- Table body will be updated via AJAX -->
+                    <tbody>
+                    </tbody>
                 </table>
-                <!-- to set all as picked up function -->
-                <!--<p><a href="inqueue-actions.php?action=moveAll">Set ALL as picked up</a></p>-->
-
             </div>
-
-
-
-
-
             <br>
             <br>
             <br>
-            <!--<p><a href="logout.php">Log out</a></p>-->
-            <!--<button><font size="3" <a href="logout.php">Log out</a></font></button>-->
             <input type="button" value="Log out" onClick="logoutAndClearLocalStorage()" />
 
-            <script>
-                function logoutAndClearLocalStorage() {
-                    // Clear localStorage here
-                    localStorage.clear();
-
-                    // Redirect to the logout page
-                    document.location.href = 'logout.php';
-                }
-            </script>
-
-
-
-
-
         <?php else : ?>
-
-            <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
-
+            <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--></p>
         <?php endif; ?>
-
-
     </center>
 
-    <script>
-        restoreSelectedRows();
-    </script>
-
 </body>
-
 <footer>
     <p><?php include "includes/footer.php"; ?></p>
 </footer>

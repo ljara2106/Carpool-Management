@@ -32,9 +32,8 @@ if (isset($_SESSION["user_id"])) {
 
 <body>
 
-
     <center>
-        <h1><a href="index.php">Search Student - CarPool Management</a></h1>
+        <h1><a href="index.php">Search Student - CarPool</a></h1>
         <!--<a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>-->
 
         <?php if (isset($user)) : ?>
@@ -236,8 +235,6 @@ if (isset($_SESSION["user_id"])) {
 
                     </table>
                 </div>
-
-
                 <br>
                 <br>
                 <br>
@@ -259,6 +256,5 @@ if (isset($_SESSION["user_id"])) {
 <footer>
     <p><?php include "includes/footer.php"; ?></p>
 </footer>
-
 
 </html>

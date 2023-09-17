@@ -14,7 +14,6 @@ if (isset($_SESSION["user_id"])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <style>
@@ -30,7 +29,6 @@ if (isset($_SESSION["user_id"])) {
     }
 </style>
 
-
 <head>
     <title>Home - CarPool Management</title>
     <meta charset="UTF-8">
@@ -40,10 +38,6 @@ if (isset($_SESSION["user_id"])) {
 </head>
 
 <body>
-
-    <br>
-    <br>
-
 
     <center>
 
@@ -85,17 +79,11 @@ if (isset($_SESSION["user_id"])) {
             <br>
             <p><a href="logout.php">Log out</a></p>
 
-
-
-
         <?php else : ?>
 
-            <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
+            <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--></p>
 
         <?php endif; ?>
-
-
-
 
     </center>
 </body>

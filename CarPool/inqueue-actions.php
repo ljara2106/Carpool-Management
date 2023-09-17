@@ -99,8 +99,6 @@ class actions
                 header('Location: http://' . $host . '/inqueue.php');
                 exit; //real location = header('Location: http://'.$host.'/carpool/inqueue.php');exit; 
 
-
-
             } else {
                 // do other stuff...
             }
@@ -126,6 +124,28 @@ class actions
             return json_encode(['success' => false]);
         }
     }
+
+    // Create function to remove student row from queue by deleting from database by queue_id
+    public function removeStudent($queue_id)
+    {
+        try {
+            $queue_id = $this->db->real_escape_string($queue_id);
+    
+            $stmt = $this->db->prepare("DELETE FROM `inqueue` WHERE queue_id = ?");
+            $stmt->bind_param("i", $queue_id);
+            $stmt->execute();
+    
+            $host = $_SERVER['HTTP_HOST'];
+            header('Location: http://' . $host . '/inqueue.php');
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    
+        $this->db->close();
+    }
+
 }
 
 $action = $_GET['action'];
@@ -141,4 +161,6 @@ if ($action === 'movetoPickedup') {
 } else if ($action === 'toggleCheckbox') { // Add checkbox state toggle action
     $checkbox_state = $_GET['checkbox_state'];
     echo $actions->updateCheckboxState($queue_id, $checkbox_state, $student_id);
+} else if ($action === 'removeStudent') { // Add remove student action
+    $actions->removeStudent($queue_id);
 }

@@ -63,7 +63,6 @@
             <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--> </p>
         <?php endif; ?>
 
-
     </center>
 </body>
 <footer>

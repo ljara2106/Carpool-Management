@@ -1,8 +1,6 @@
 <?php
 include("validate-captcha.php");
 ?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -46,9 +44,7 @@ include("validate-captcha.php");
         * Civil and criminal penalties pursuant to Title 26 Sections 7213, 7213A and 7431 of the United States Code.
         <br>
         <br>
-
         Disclosure of this data or use of this data for a non-business purpose may violate the Data Practices Act and could result in an investigation and civil and criminal penalties.
-
         Any identified evidence of possible criminal activity will be provided to appropriate law enforcement agencies.
         </p>
     </div>
@@ -58,45 +54,32 @@ include("validate-captcha.php");
     <center>
 
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary"></a>
-
         <br>
-
         <h1>Login</h1>
-
         <br>
-
         <?php if ($is_invalid) : ?>
             <em>
                 <p style="color:tomato;">Invalid login, check credentials.
             </em></p>
         <?php endif; ?>
-
-
         <br>
         <br>
-
-
         <form action="login.php" method="post">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" size="30" value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
 
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
-
             <br>
-
             <div class="g-recaptcha" data-sitekey="6LdtiwwUAAAAAHKlRpozGAjMEOQLt55sAVNaI12S"></div>
             <div>
                 <p style="color:tomato;"> <?php echo $error_message; ?></p>
             </div>
-
             <br>
             <button>Log in</button>
         </form>
-
     </center>
 </body>
-
 
 <footer>
     <p><?php include "includes/footer.php"; ?></p>
