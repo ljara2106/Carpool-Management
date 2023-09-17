@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <noscript>
+        <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
+    </noscript>
+
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary"></a>
         <h1><a href="index.php">Time Report - CarPool Management</a></h1>
@@ -52,11 +56,9 @@
                 loadTimeReport();
                 setInterval(loadTimeReport, 3000); // Refresh every 3 seconds
             </script>
-
             <br>
             <br>
             <br>
-
             <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
 
         <?php else : ?>

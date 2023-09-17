@@ -29,7 +29,10 @@ $sec = 3;
 </head>
 
 <body>
-
+    <noscript>
+        <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
+    </noscript>
+    
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
         <h1><a href="index.php">Monitor - CarPool Management</a></h1>
@@ -52,7 +55,7 @@ $sec = 3;
             <br>
             <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
         <?php else : ?>
-            <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
+            <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--></p>
         <?php endif; ?>
     </center>
 

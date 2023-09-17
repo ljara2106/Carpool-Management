@@ -55,8 +55,6 @@ $sec = "3";
     // Call the restoreSelectedRows function on page load
     document.addEventListener("DOMContentLoaded", restoreSelectedRows);
 
-
-
     // Function to toggle checkbox state and update database
     function toggleCheckbox(queueId, studentId, el) {
 
@@ -97,7 +95,6 @@ $sec = "3";
 </head>
 
 <body>
-
 
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>

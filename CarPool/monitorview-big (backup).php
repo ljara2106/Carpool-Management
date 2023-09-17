@@ -31,25 +31,18 @@ $sec = "3";
 </head>
 
 <body>
-
-
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
         <h1><a href="index.php">Monitor - CarPool Management</a></h1>
         <br>
-
-
         <?php if (isset($user)) : ?>
 
             <p>Hello, Welcome : <?= htmlspecialchars($user["name"]) ?></p>
             <br>
             <br>
-
-
             <div class="container">
                 <table class="table">
                     <?php
-
 
                     $sql = "SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() and picked_up=0 LIMIT 52 ";
 
@@ -59,8 +52,7 @@ $sec = "3";
                         if (mysqli_num_rows($results) > 0) {
                             echo '<thead>
                     <tr>
-                    
-                   
+                                    
                     <th style="font-size: 20px;"><strong>First Name</strong></th>
                     <th style="font-size: 20px;"><strong>Last Name</strong></th>
                     <th style="font-size: 20px;"><strong>Grade</strong></strig></th>
@@ -89,7 +81,6 @@ $sec = "3";
                         }
                     }
 
-
                     ?>
 
                 </table>
@@ -97,11 +88,6 @@ $sec = "3";
                 <!--<p><a href="actions.php?action=moveAll">Set ALL as picked up</a></p>-->
 
             </div>
-
-
-
-
-
             <br>
             <br>
             <br>
@@ -111,28 +97,11 @@ $sec = "3";
             <!--<p><a href="logout.php">Log out</a></p>-->
             <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
 
-
-
-
         <?php else : ?>
 
             <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
 
         <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </center>
 </body>

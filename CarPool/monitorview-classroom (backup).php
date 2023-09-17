@@ -33,11 +33,9 @@ $sec = "3";
 
 <body>
 
-
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary"></a>
         <h1><a href="index.php">Monitor - CarPool Management</a></h1>
-
 
         <br>
         <?php if (isset($user)) : ?>
@@ -103,11 +101,6 @@ $sec = "3";
                 <!--<p><a href="actions.php?action=moveAll">Set ALL as picked up</a></p>-->
 
             </div>
-
-
-
-
-
             <br>
             <br>
             <br>
@@ -117,15 +110,11 @@ $sec = "3";
             <!--<p><a href="logout.php">Log out</a></p>-->
             <input type="button" value="Log out" onClick="document.location.href='logout.php'" />
 
-
-
-
         <?php else : ?>
 
-            <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
+            <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--></p>
 
         <?php endif; ?>
-
 
     </center>
 </body>

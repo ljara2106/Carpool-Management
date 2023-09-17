@@ -14,7 +14,6 @@ if (isset($_SESSION["user_id"])) {
     $stmt->close();
 }
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,11 +25,12 @@ if (isset($_SESSION["user_id"])) {
     <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
 </head>
 
 <body>
+    <noscript>
+        <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
+    </noscript>
 
     <center>
         <h1><a href="index.php">Search Student - CarPool</a></h1>
@@ -164,11 +164,7 @@ if (isset($_SESSION["user_id"])) {
 
                 setTimeout(playSound, 3000);
             </script>
-
-
-
             <br>
-
 
             <!-- Function to only search numbers on search bar -->
             <script>
@@ -179,7 +175,6 @@ if (isset($_SESSION["user_id"])) {
                     return true;
                 }
             </script>
-
 
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -196,7 +191,6 @@ if (isset($_SESSION["user_id"])) {
                 });
             </script>
 
-
             <!-- Function to play sound on windows desktop / does not work on ios for web -->
             <!--<script>
 
@@ -206,7 +200,6 @@ if (isset($_SESSION["user_id"])) {
             }
 
         </script>-->
-
 
             <div class="container">
                 <form method="POST" id="searchForm">
@@ -246,7 +239,7 @@ if (isset($_SESSION["user_id"])) {
 
             <?php else : ?>
 
-                <p><a href="login.php">Log in</a> or <a href="signup.html">Sign up</a></p>
+                <p><a href="login.php">Log in</a> <!--or <a href="signup.html">Sign up</a>--></p>
 
             <?php endif; ?>
 
