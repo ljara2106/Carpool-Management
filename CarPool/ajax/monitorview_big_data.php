@@ -38,7 +38,9 @@ if (isset($_SESSION["user_id"])) {
             echo '<td style="font-size: 20px;">' . htmlspecialchars($row['last_name']) . '</td>';
             echo '<td style="font-size: 20px;">' . htmlspecialchars($row['grade']) . '</td>';
             echo '<td style="font-size: 20px;">' . htmlspecialchars($row['teacher_name']) . '</td>';
-            echo '<td>' . htmlspecialchars($row['datetime_added']) . '</td>';
+            $datetime_added = date("h:i:s A", strtotime($row['datetime_added']));
+            echo '<td>' . htmlspecialchars($datetime_added) . '</td>';
+
             echo '<td style="font-size: 20px; color:green"> ⌚🚗 Go! </td>';
             echo '</tr>';
         }
@@ -53,4 +55,3 @@ if (isset($_SESSION["user_id"])) {
 } else {
     echo "<center><h2 class='text-danger'>You are not authorized to access this page.</h2></center>";
 }
-?>

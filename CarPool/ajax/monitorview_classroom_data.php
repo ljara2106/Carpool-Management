@@ -48,12 +48,13 @@ if (isset($_SESSION["user_id"])) {
                 echo '<tbody>';
 
                 while ($row = $results->fetch_assoc()) {
+                    $datetime_added = date("h:i:s A", strtotime($row['datetime_added']));
                     echo '<tr>
                         <td>' . htmlspecialchars($row['first_name']) . '</td>
                         <td>' . htmlspecialchars($row['last_name']) . '</td>
                         <td>' . htmlspecialchars($row['grade']) . '</td>
                         <td>' . htmlspecialchars($row['teacher_name']) . '</td>
-                        <td>' . htmlspecialchars($row['datetime_added']) . '</td>
+                        <td>' . htmlspecialchars($datetime_added) . '</td>
                         <td style="font-size: 20px; color:green"> ⌚🚗 Go! </td>
                     </tr>';
                 }

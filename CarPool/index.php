@@ -38,7 +38,9 @@ if (isset($_SESSION["user_id"])) {
 </head>
 
 <body>
-
+    <noscript>
+        <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
+    </noscript>
     <center>
 
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
@@ -93,4 +95,3 @@ if (isset($_SESSION["user_id"])) {
 </footer>
 
 </html>
-

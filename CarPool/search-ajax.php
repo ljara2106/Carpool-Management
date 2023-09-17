@@ -55,7 +55,6 @@ if (isset($_SESSION["user_id"])) {
                 function search_student(search) {
 
                     //console.log(search);
-
                     if (search in key_map)
                         return;
 
@@ -75,9 +74,7 @@ if (isset($_SESSION["user_id"])) {
                         }
                     });
 
-
                 }
-
 
                 // QR code scanner *****************************************************************************************
                 /*  function onScanSuccess(decodedText, decodedResult) {
@@ -86,8 +83,6 @@ if (isset($_SESSION["user_id"])) {
                      document.getElementById("search").value = decodedText;
                      search_student(decodedText);
                      playSound();
-
-
                  }
 
                  function onScanError(errorMessage) {

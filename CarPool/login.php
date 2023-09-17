@@ -28,6 +28,9 @@ include("validate-captcha.php");
 </head>
 
 <body>
+    <noscript>
+        <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
+    </noscript>
     <div class="WarningMsg">
         <p>
             Warning!
@@ -36,9 +39,7 @@ include("validate-captcha.php");
             By continuing to use this system, you are representing yourself as an authorized user. Any activity on this system may be monitored and accessed by Thanksgiving Elementary School or other authorized officials at any time.
             This includes any data created or stored using this system. All such data is subject to the Data Practices Act.
         </p>
-        <br>
         Use of this system without appropriate authority, or in excess of authority, may result in:
-        <br>
         <br>
         * Disciplinary action and/or, Criminal sanctions and/or other appropriate action and/or,</br>
         * Civil and criminal penalties pursuant to Title 26 Sections 7213, 7213A and 7431 of the United States Code.

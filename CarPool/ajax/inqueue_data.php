@@ -41,6 +41,7 @@ if (isset($_SESSION["user_id"])) {
                     <th><strong>Last Name</strong></th>
                     <th><strong>Grade</strong></th>
                     <th><strong>Teacher</strong></th>
+                   
                     <th><strong>Action</strong></th>
                     <th><strong>Remove</strong></th>
                 </tr>
@@ -51,6 +52,7 @@ if (isset($_SESSION["user_id"])) {
                 $highlightStyle = ($row['student_id'] == 999) ? 'background-color: red;' : '';
                 $rowId = 'row_' . $row['queue_id'];
                 $isChecked = ($row['checkbox_state'] == 1) ? 'checked' : '';
+                // $datetime_added = date("h:i:s A", strtotime($row['datetime_added']));
                 $output .= '<tr id="' . $rowId . '" onclick="toggleHighlight(\'' . $rowId . '\')" style="' . $highlightStyle . '">
                     <td><input type="checkbox" onclick="toggleCheckbox(' . $row['queue_id'] . ', ' . $row['student_id'] . ', this)" ' . $isChecked . '></td> 
                     <td>' . $row['queue_id'] . '</td>
@@ -59,6 +61,7 @@ if (isset($_SESSION["user_id"])) {
                     <td>' . $row['last_name'] . '</td>
                     <td>' . $row['grade'] . '</td>
                     <td>' . $row['teacher_name'] . '</td>
+                  
                     <td>';
                 if ($row['student_id'] != 999) {
                     $output .= '<a href="/../inqueue-actions.php?action=movetoPickedup&student_id=' . $row['student_id'] . '">✔️ Sent</a>';
