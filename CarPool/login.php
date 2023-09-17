@@ -41,6 +41,7 @@ include("validate-captcha.php");
         </p>
         Use of this system without appropriate authority, or in excess of authority, may result in:
         <br>
+        <br>
         * Disciplinary action and/or, Criminal sanctions and/or other appropriate action and/or,</br>
         * Civil and criminal penalties pursuant to Title 26 Sections 7213, 7213A and 7431 of the United States Code.
         <br>
