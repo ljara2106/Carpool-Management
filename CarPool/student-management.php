@@ -47,11 +47,11 @@ if (isset($_SESSION["user_id"])) {
       </a>
     </nav>
 
-
+    <br>
     <div style="text-align: center;">
-      <p>Hello, Welcome: <?= htmlspecialchars($user["name"]) ?></p>
+      <p>Hello, Welcome: <strong><?= htmlspecialchars($user["name"]) ?></strong></p>
     </div>
-
+    <br>
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="text-body-secondary">
@@ -95,7 +95,7 @@ if (isset($_SESSION["user_id"])) {
       <div class="offcanvas-body">
         <form method="POST" id="insertForm">
           <div class="mb-3">
-            <label for="student_id" class="form-label">Student ID</label>
+            <label for="student_id" class="form-label">Student ID (auto-generated)</label>
             <?php
             // Assuming you have a database connection and query here
             $query = "SELECT MAX(student_id) AS max_student_id FROM students";
@@ -115,7 +115,7 @@ if (isset($_SESSION["user_id"])) {
           </div>
           <div class="mb-3">
             <label for="grade" class="form-label">Grade</label>
-            <input type="number" class="form-control" id="grade" name="grade" placeholder="0">
+            <input type="number" class="form-control" id="grade" name="grade">
           </div>
           <div class="mb-3">
             <label for="teacher_name" class="form-label">Teacher Name</label>
@@ -133,7 +133,7 @@ if (isset($_SESSION["user_id"])) {
             </select>
           </div>
           <div class="mb-3">
-            <label for="teacher_id" class="form-label">Teacher ID</label>
+            <label for="teacher_id" class="form-label">Teacher ID (auto-assignment)</label>
             <input type="number" class="form-control" id="teacher_id" name="teacher_id" placeholder="0" readonly>
           </div>
           <div class="text-end">
@@ -157,7 +157,7 @@ if (isset($_SESSION["user_id"])) {
         <form method="POST" id="editForm">
           <input type="hidden" name="id" id="id">
           <div class="mb-3">
-            <label for="edit_student_id" class="form-label">Student ID</label>
+            <label for="edit_student_id" class="form-label">Student ID (read-only)</label>
             <input type="number" class="form-control" id="edit_student_id" name="student_id" placeholder="1000" readonly>
           </div>
           <div class="mb-3">
@@ -170,7 +170,7 @@ if (isset($_SESSION["user_id"])) {
           </div>
           <div class="mb-3">
             <label for="edit_grade" class="form-label">Grade</label>
-            <input type="number" class="form-control" id="edit_grade" name="grade" placeholder="0">
+            <input type="number" class="form-control" id="edit_grade" name="grade">
           </div>
           <div class="mb-3">
             <label for="edit_teacher_name" class="form-label">Teacher Name</label>
@@ -188,7 +188,7 @@ if (isset($_SESSION["user_id"])) {
             </select>
           </div>
           <div class="mb-3">
-            <label for="edit_teacher_id" class="form-label">Teacher ID</label>
+            <label for="edit_teacher_id" class="form-label">Teacher ID (auto-assignment)</label>
             <input type="number" class="form-control" id="edit_teacher_id" name="teacher_id" placeholder="0" readonly>
           </div>
           <div class="text-end">
@@ -274,7 +274,7 @@ if (isset($_SESSION["user_id"])) {
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
     <!-- JS  -->
     <script src="/js/student-management.js"></script>
-
+    <br>
     <br>
     <br>
     <div style="text-align: center;"> <input type="button" value="Log out" onClick="document.location.href='logout.php'" /></div>
