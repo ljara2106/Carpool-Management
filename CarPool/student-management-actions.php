@@ -3,7 +3,7 @@ require __DIR__ . "/dbconfig/database.php"; // Adjust the path as needed
 
 // function to fetch data
 if ($_GET["action"] === "fetchData") {
-  $sql = "SELECT * FROM students";
+  $sql = "SELECT * FROM students where student_id != 999";
   $result = mysqli_query($mysqli, $sql);
 
   if (!$result) {
