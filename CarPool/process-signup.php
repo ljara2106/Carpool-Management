@@ -36,8 +36,8 @@ if (isset($_POST['g-recaptcha-response'])) {
 
         $mysqli = require __DIR__ . "/dbconfig/database.php";
 
-        $sql = "INSERT INTO user (name, email, password_hash)
-                    VALUES (?, ?, ?)";
+        $sql = "INSERT INTO user (name, email, password_hash, teacher_id)
+                    VALUES (?, ?, ?, ?)";
 
         $stmt = $mysqli->stmt_init();
 
@@ -45,11 +45,15 @@ if (isset($_POST['g-recaptcha-response'])) {
             die("SQL error: " . $mysqli->error);
         }
 
+        // Check if teacher_id is provided and is a valid integer, otherwise set it to NULL
+        $teacher_id = isset($_POST["teacher_id"]) && is_numeric($_POST["teacher_id"]) ? $_POST["teacher_id"] : NULL;
+
         $stmt->bind_param(
-            "sss",
+            "ssss",
             $_POST["name"],
             $_POST["email"],
-            $password_hash
+            $password_hash,
+            $teacher_id
         );
 
         if ($stmt->execute()) {
