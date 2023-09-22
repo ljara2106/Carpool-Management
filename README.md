@@ -59,7 +59,7 @@ CarPool Management simplifies the carpool pickup process while prioritizing stud
 
 
 Big thanks to:
-- https://blog.minhazav.dev/research/html5-qrcode (QR scanner tech)
+- https://blog.minhazav.dev/research/html5-qrcode (QR scanner)
 - https://gist.github.com/kus/3f01d60569eeadefe3a1 (fix for sounds on iOS)
 
 
