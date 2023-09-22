@@ -1,10 +1,6 @@
 # CarPool Management
 
-This is carpool management - a simple managment tool for elementary schools to be able to monitor dismissal via QR code scanner.
-It is supposed to scan the student ID "embedded" in the QR code that goes in the parent's car windshield.
-The idea came to me as parent with privacy and safety concern with the way many schools are currently handling carpool pickups lanes with plain text student's information, which 
-includes, student first and last names, grade and teacher's name.
-Now, all of the student's information gets displayed after scanning the unique student's ID and then pushed off into different location in MySQL database to be read.
+This is carpool management - a simple management tool for elementary schools to be able to monitor dismissal via a QR code scanner. It allows school staff to scan or type in the student ID "embedded" in the QR code that goes on the parent's car windshield and automatically sends that data to the teacher's monitoring view, where they can see which of their students were scanned and proceed to send them out for pickup. The idea came to me as a parent with privacy and safety concerns about the way many schools are currently handling carpool pickup lanes with plain text student information, which includes student first and last names, grade, and teacher's name. Now, all of the student's information is displayed after scanning the unique student ID and then pushed into a different location in the MySQL database to be read.
 
 Pros:
 - Privacy for student's information.
