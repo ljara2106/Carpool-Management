@@ -2,8 +2,7 @@
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-  // Include the database configuration
-  require __DIR__ . "/dbconfig/database.php"; // Adjust the path as needed
+  require __DIR__ . "/dbconfig/database.php"; 
   $sql = "SELECT * FROM user WHERE id = ?";
   $stmt = $mysqli->prepare($sql);
   $stmt->bind_param("i", $_SESSION["user_id"]);
@@ -122,7 +121,7 @@ if (isset($_SESSION["user_id"])) {
             <select class="form-select" id="teacher_name" name="teacher_name">
               <option value="" selected disabled>--Select Teacher--</option>
               <?php
-              // Assuming you have a database connection
+              // Database connection
               $sql = "SELECT teacher_id, name FROM user WHERE teacher_id IS NOT NULL";
               $result = mysqli_query($mysqli, $sql);
 
@@ -177,7 +176,7 @@ if (isset($_SESSION["user_id"])) {
             <select class="form-select" id="edit_teacher_name" name="teacher_name">
               <option value="" selected disabled>--Select Teacher--</option>
               <?php
-              // Assuming you have a database connection
+              // Database connection
               $sql = "SELECT teacher_id, name FROM user WHERE teacher_id IS NOT NULL";
               $result = mysqli_query($mysqli, $sql);
 

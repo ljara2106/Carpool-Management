@@ -43,7 +43,7 @@
                 // Function to load and update the time report table via AJAX
                 function loadTimeReport() {
                     $.ajax({
-                        url: 'ajax/load_time_report.php', // Create a separate PHP file to handle the AJAX request
+                        url: 'ajax/load_time_report.php', // Separate PHP file to handle the AJAX request
                         type: 'GET',
                         dataType: 'html',
                         success: function(data) {

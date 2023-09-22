@@ -2,8 +2,7 @@
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    // Include the database configuration
-    require __DIR__ . "/dbconfig/database.php"; // Adjust the path as needed
+    require __DIR__ . "/dbconfig/database.php"; 
     $sql = "SELECT * FROM user WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("i", $_SESSION["user_id"]);

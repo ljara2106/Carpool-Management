@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "/dbconfig/database.php"; // Adjust the path as needed
+require __DIR__ . "/dbconfig/database.php"; 
 
 // function to fetch data
 if ($_GET["action"] === "fetchData") {

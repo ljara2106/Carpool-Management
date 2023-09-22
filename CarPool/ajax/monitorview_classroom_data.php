@@ -2,8 +2,8 @@
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    // Include the database configuration
-    require __DIR__ . "/../dbconfig/database.php"; // Adjust the path as needed
+
+    require __DIR__ . "/../dbconfig/database.php"; // Database connection configuration file
     $user_id = $_SESSION["user_id"];
 
     if (is_numeric($user_id)) { // Check if $user_id is numeric (assuming it's an integer)

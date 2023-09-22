@@ -1,10 +1,9 @@
 <?php
-// Include your database connection code if required
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    // Include the database configuration
-    require __DIR__ . "/../dbconfig/database.php"; // Adjust the path as needed
+
+    require __DIR__ . "/../dbconfig/database.php"; // Database connection configuration file
 
     // Use prepared statements to prevent SQL injection
     $sql = "SELECT * FROM user WHERE id = ?";
