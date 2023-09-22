@@ -88,7 +88,7 @@ if (isset($_SESSION["user_id"])) {
     <!-- Add user offcanvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" style="width: 600px;">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Add New User</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Add New Student</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
