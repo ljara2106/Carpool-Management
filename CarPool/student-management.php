@@ -102,7 +102,7 @@ if (isset($_SESSION["user_id"])) {
             $row = mysqli_fetch_assoc($result);
             $next_student_id = $row['max_student_id'] + 1;
             ?>
-            <input type="number" class="form-control" id="student_id" name="student_id" value="<?php echo $next_student_id; ?>" readonly>
+            <input type="number" class="form-control" id="student_id" name="student_id" value="<?php echo $next_student_id; ?>" readonly style="background-color: lightgray";>
           </div>
           <div class="mb-3">
             <label for="first_name" class="form-label">First Name</label>
@@ -133,7 +133,7 @@ if (isset($_SESSION["user_id"])) {
           </div>
           <div class="mb-3">
             <label for="teacher_id" class="form-label">Teacher ID (auto-assignment)</label>
-            <input type="number" class="form-control" id="teacher_id" name="teacher_id" placeholder="0" readonly>
+            <input type="number" class="form-control" id="teacher_id" name="teacher_id" placeholder="0" readonly style="background-color: lightgray";>
           </div>
           <div class="text-end">
             <button type="submit" class="btn btn-primary me-2" id="insertBtn">Submit</button>
@@ -149,7 +149,7 @@ if (isset($_SESSION["user_id"])) {
     <!-- Edit user offcanvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditUser" style="width: 600px;">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Edit User Data</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Edit Student Data</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -157,7 +157,7 @@ if (isset($_SESSION["user_id"])) {
           <input type="hidden" name="id" id="id">
           <div class="mb-3">
             <label for="edit_student_id" class="form-label">Student ID (read-only)</label>
-            <input type="number" class="form-control" id="edit_student_id" name="student_id" placeholder="1000" readonly>
+            <input type="number" class="form-control" id="edit_student_id" name="student_id" placeholder="1000" readonly style="background-color: lightgray";>
           </div>
           <div class="mb-3">
             <label for="edit_first_name" class="form-label">First Name</label>
@@ -188,7 +188,7 @@ if (isset($_SESSION["user_id"])) {
           </div>
           <div class="mb-3">
             <label for="edit_teacher_id" class="form-label">Teacher ID (auto-assignment)</label>
-            <input type="number" class="form-control" id="edit_teacher_id" name="teacher_id" placeholder="0" readonly>
+            <input type="number" class="form-control" id="edit_teacher_id" name="teacher_id" placeholder="0" readonly style="background-color: lightgray";>
           </div>
           <div class="text-end">
             <button type="submit" class="btn btn-primary me-2" id="editBtn">Update</button>
