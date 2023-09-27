@@ -24,7 +24,7 @@ if (isset($_SESSION["user_id"])) {
         $count = 0;
     }
 
-    $sqlData = "SELECT * FROM `inqueue` WHERE DATE(`datetime_added`) = CURDATE() AND `picked_up` = 0 LIMIT 52";
+    $sqlData = "SELECT * FROM `inqueue` WHERE DATE(`datetime_added`) = CURDATE() AND `picked_up` = 0 LIMIT 75";
     $resultsData = mysqli_query($mysqli, $sqlData);
 
     $output = ""; // Initialize the output variable

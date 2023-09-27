@@ -14,7 +14,7 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
     $stmt->close();
 
-    $sql = "SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() AND picked_up = 0 LIMIT 52";
+    $sql = "SELECT * FROM `inqueue` WHERE DATE(datetime_added) = CURDATE() AND picked_up = 0 LIMIT 75";
     $results = mysqli_query($mysqli, $sql);
 
     if ($results && mysqli_num_rows($results) > 0) {
