@@ -70,6 +70,6 @@ if (isset($_SESSION["user_id"])) {
         echo '<tr><td colspan="6">Invalid user ID.</td></tr>';
     }
 } else {
-    echo "<center><h2 class='text-danger'>🚫You are not authorized to access this page.🚫</h2></center>";
+    echo "<center><h2 class='text-danger'>🚫 You are not authorized to access this page. 🚫</h2></center>";
 }
 ?>

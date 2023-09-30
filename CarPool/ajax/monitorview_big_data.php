@@ -52,5 +52,5 @@ if (isset($_SESSION["user_id"])) {
     // Close the database connection
     $mysqli->close();
 } else {
-    echo "<center><h2 class='text-danger'>🚫You are not authorized to access this page.🚫</h2></center>";
+    echo "<center><h2 class='text-danger'>🚫 You are not authorized to access this page. 🚫</h2></center>";
 }
