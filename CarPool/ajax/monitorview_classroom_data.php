@@ -61,7 +61,7 @@ if (isset($_SESSION["user_id"])) {
 
                 echo '</tbody>';
             } else {
-                echo '<center><h2 class=text-danger>No student data found, please add student to the queue.</h2></center>'; 
+                echo '<center><h2 class=text-danger>No student data found, please add student to the queue. 😕</h2></center>'; 
             }
         } else {
             echo '<tr><td colspan="6">Error executing SQL query: ' . htmlspecialchars(mysqli_error($mysqli)) . '</td></tr>';
@@ -70,6 +70,6 @@ if (isset($_SESSION["user_id"])) {
         echo '<tr><td colspan="6">Invalid user ID.</td></tr>';
     }
 } else {
-    echo "<center><h2 class='text-danger'>You are not authorized to access this page.</h2></center>";
+    echo "<center><h2 class='text-danger'>🚫You are not authorized to access this page.🚫</h2></center>";
 }
 ?>

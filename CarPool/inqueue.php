@@ -35,7 +35,7 @@ if (isset($_SESSION["user_id"])) {
 
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
-        <h1><a href="index.php"> Queue List - CarPool Management</a></h1>
+        <h1><a href="index.php"> Queue List 🚗 - CarPool Management 🚦</a></h1>
         <br>
         <?php if (isset($user)) : ?>
             <p>Hello, Welcome : <strong><?= htmlspecialchars($user["name"]) ?></strong></p>

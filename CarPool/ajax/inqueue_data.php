@@ -88,7 +88,7 @@ if (isset($_SESSION["user_id"])) {
 
             $output .= '</tbody>';
         } else {
-            $output .= '<center><h2 class="text-danger">No student data found, please add students to the queue.</h2></center>';
+            $output .= '<center><h2 class="text-danger">No student data found, please add students to the queue. 😕</h2></center>';
         }
     }
 
@@ -98,6 +98,6 @@ if (isset($_SESSION["user_id"])) {
     // Echo the count and table data separated by "|||"
     echo $output . '|||' . $count . '|||' . $displayCount;
 } else {
-    echo "<center><h2 class='text-danger'>You are not authorized to access this page.</h2></center>";
+    echo "<center><h2 class='text-danger'>🚫You are not authorized to access this page.🚫</h2></center>";
 }
 ?>

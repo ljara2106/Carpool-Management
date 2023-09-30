@@ -17,7 +17,7 @@
 
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary"></a>
-        <h1><a href="index.php">Time Report - CarPool Management</a></h1>
+        <h1><a href="index.php">Time Report 🕒 - CarPool Management 🚦</a></h1>
         <br>
         <?php
         session_start();

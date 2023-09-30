@@ -34,7 +34,7 @@ $sec = 3;
     
     <center>
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" title="Home"></a>
-        <h1><a href="index.php">Monitor - CarPool Management</a></h1>
+        <h1><a href="index.php">Monitor 🖥️ - CarPool Management 🚦</a></h1>
         <br>
 
         <?php if (isset($user)) : ?>

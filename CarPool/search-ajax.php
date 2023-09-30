@@ -32,7 +32,7 @@ if (isset($_SESSION["user_id"])) {
     </noscript>
 
     <center>
-        <h1><a href="index.php">Search Student - CarPool</a></h1>
+        <h1><a href="index.php">Search Student 🔍 - CarPool 🚦</a></h1>
         <!--<a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary" ></a>-->
 
         <?php if (isset($user)) : ?>
