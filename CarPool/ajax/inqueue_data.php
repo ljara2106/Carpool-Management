@@ -14,6 +14,7 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
     $stmt->close();
 
+    // Get the total number of students in the queue
     $sqlCount = "SELECT COUNT(*) as count FROM `inqueue` WHERE DATE(`datetime_added`) = CURDATE() AND `picked_up` = 0 AND student_id != 999";
     $resultsCount = mysqli_query($mysqli, $sqlCount);
 
@@ -22,6 +23,23 @@ if (isset($_SESSION["user_id"])) {
         $count = $row['count'];
     } else {
         $count = 0;
+    }
+
+    // Get the number displayed
+    $sqlDisplayCount = "SELECT COUNT(*) as displayCount
+    FROM (
+        SELECT *
+        FROM inqueue
+        WHERE DATE(`datetime_added`) = CURDATE() AND student_id != 999 AND picked_up = 0
+        LIMIT 75
+    ) AS subquery";
+    $resultsDisplayCount = mysqli_query($mysqli, $sqlDisplayCount);
+    
+    if ($resultsDisplayCount) {
+        $row = mysqli_fetch_assoc($resultsDisplayCount);
+        $displayCount = $row['displayCount'];
+    } else {
+        $displayCount = 0;
     }
 
     $sqlData = "SELECT * FROM `inqueue` WHERE DATE(`datetime_added`) = CURDATE() AND `picked_up` = 0 LIMIT 75";
@@ -78,7 +96,7 @@ if (isset($_SESSION["user_id"])) {
     $mysqli->close();
 
     // Echo the count and table data separated by "|||"
-    echo $output . '|||' . $count;
+    echo $output . '|||' . $count . '|||' . $displayCount;
 } else {
     echo "<center><h2 class='text-danger'>You are not authorized to access this page.</h2></center>";
 }

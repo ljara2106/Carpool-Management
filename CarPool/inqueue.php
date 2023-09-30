@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    require __DIR__ . "/dbconfig/database.php"; 
+    require __DIR__ . "/dbconfig/database.php";
     $sql = "SELECT * FROM user WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("i", $_SESSION["user_id"]);
@@ -38,10 +38,14 @@ if (isset($_SESSION["user_id"])) {
         <h1><a href="index.php"> Queue List - CarPool Management</a></h1>
         <br>
         <?php if (isset($user)) : ?>
-            <p>Hello, Welcome : <?= htmlspecialchars($user["name"]) ?></p>
+            <p>Hello, Welcome : <strong><?= htmlspecialchars($user["name"]) ?></strong></p>
             <br>
-            <!-- display a count of the number of students in the queue -->
-            <h2 id="queueCount" style="text-align: center;">Total in Queue: <span id="queueCountNumber">0</span></h2>
+            <div style="text-align: center; background-color: #18202A; padding: 10px;">
+                <!-- Display a count of the number of students in the queue -->
+                <h2 id="queueCount" style="display: inline; margin-right: 20px; font-size: 24px; color: #FFFFFF;">Total in Queue: <span id="queueCountNumber" style="font-weight: bold;">0</span></h2>
+                <h3 id="displayCount" style="display: inline; font-size: 18px; color: #FFFFFF;">Displaying:  <span id="displayCountNumber"  style="font-weight: bold;">0</span></h3>
+                <!--<p><em>Note: Only a maximum of 75 rows will be displayed.</em></p>-->
+            </div>
             </br>
             <div class="container">
 
@@ -136,7 +140,7 @@ if (isset($_SESSION["user_id"])) {
                     fetch('/ajax/inqueue_data.php') // Fetch both data and count in a single request
                         .then(response => response.text()) // Parse the response as plain text
                         .then(data => {
-                            const [tableData, count] = data.split("|||"); // Split the response into table data and count
+                            const [tableData, count, displayCount] = data.split("|||"); // Split the response into table data and count
 
                             // Update table data
                             document.querySelector("#queueTable tbody").innerHTML = tableData;
@@ -146,6 +150,13 @@ if (isset($_SESSION["user_id"])) {
                             if (countElement) {
                                 countElement.innerText = count;
                             }
+
+                            // Update the display count element
+                            const displayCountElement = document.querySelector("#displayCountNumber");
+                            if (displayCountElement) {
+                                displayCountElement.innerText = displayCount;
+                            }
+
                             // Restore selected rows
                             restoreSelectedRows();
                         })
