@@ -31,7 +31,7 @@
         }
         ?>
         <?php if (isset($user)) : ?>
-            <p>Hello, Welcome : <?= htmlspecialchars($user["name"]) ?></p>
+            <p>Hello, Welcome : <strong> <?= htmlspecialchars($user["name"]) ?> </strong></p>
             <br>
             <p>(Time Report for the Past 7 Weekdays and Today)</p>
             <br>
