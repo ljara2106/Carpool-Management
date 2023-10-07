@@ -37,7 +37,7 @@ CarPool Management is a user-friendly software solution designed for elementary 
 - Bid farewell to walkie-talkies and paper tag printouts; use mobile phones with QR code display.
 
 ### Security Measures
-- Implementation of reCAPTCHA keeps malicious bots at bay.
+- Implementation of reCAPTCHA or Cloudflare's Turnstile keeps malicious bots at bay.
 
 ## Considerations
 
