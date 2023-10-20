@@ -1,5 +1,7 @@
 # CarPool Management
 
+![GitHub last commit](https://img.shields.io/github/last-commit/ljara2106/Carpool-Management)
+
 CarPool Management is a user-friendly software solution designed for elementary schools to streamline and enhance the dismissal process using QR code technology. This tool empowers school staff to efficiently monitor and manage student pickups, prioritizing privacy and safety. Say goodbye to the hassles of manual data entry and paper-based processes with CarPool Management.
 
 ## Key Features
