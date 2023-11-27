@@ -4,7 +4,7 @@ $error_message = '';
 
 if (isset($_POST['cf-turnstile-response'])) {
     $ip = $_SERVER['REMOTE_ADDR'];
-    $secret = '0x4AAAAAAAK1e2mDbtJI1ssuet85aXXmXRE';
+    $secret = 'YOUR_SECRET_KEY';
     
     $postData = [
         'secret' => $secret,
