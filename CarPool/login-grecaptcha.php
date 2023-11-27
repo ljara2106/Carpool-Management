@@ -24,9 +24,7 @@ include("validate-captcha.php");
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
-    <!--<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>-->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -76,7 +74,7 @@ include("validate-captcha.php");
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
             <br>
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAK1eyBQ3lpTEMIr"></div>
+            <div class="g-recaptcha" data-sitekey="6LdtiwwUAAAAAHKlRpozGAjMEOQLt55sAVNaI12S"></div>
             <div>
                 <p style="color:tomato;"> <?php echo $error_message; ?></p>
             </div>
