@@ -177,7 +177,7 @@ if (isset($_SESSION["user_id"])) {
               <option value="" selected disabled>--Select Teacher--</option>
               <?php
               // Database connection
-              $sql = "SELECT teacher_id, name FROM user WHERE teacher_id IS NOT NULL";
+              $sql = "SELECT teacher_id, name FROM user WHERE teacher_id IS NOT NULL order by name ASC";
               $result = mysqli_query($mysqli, $sql);
 
               while ($row = mysqli_fetch_assoc($result)) {
