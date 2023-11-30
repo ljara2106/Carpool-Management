@@ -132,7 +132,7 @@ if ($_GET["action"] === "fetchSingle") {
 // function to update data
 if ($_GET["action"] === "updateData") {
 
-  if (!empty($_POST["student_id"]) && !empty($_POST["first_name"]) && !empty($_POST["last_name"]) && !empty($_POST["grade"]) && !empty($_POST["teacher_name"]) && !empty($_POST["teacher_id"])) {
+  if (!empty($_POST["student_id"]) && !empty($_POST["first_name"]) && !empty($_POST["last_name"]) && isset($_POST["grade"]) && !empty($_POST["teacher_name"]) && !empty($_POST["teacher_id"])) {
     $id = mysqli_real_escape_string($mysqli, $_POST["id"]);
     $student_id = mysqli_real_escape_string($mysqli, $_POST["student_id"]);
     $first_name = $_POST["first_name"]; // No escaping here
