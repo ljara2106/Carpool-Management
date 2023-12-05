@@ -68,6 +68,7 @@ if (isset($_SESSION["user_id"])) {
                 <button> <a href="inqueue.php">In Queue</a> </button> <br>
                 <button> <a href="inqueue-report.php">Time Report</a> </button> <br>
                 <button> <a href="student-management.php">Student Management</a> </button> <br>
+                <button> <a href="user-management.php">User Management</a> </button> <br>
                 <button> <a href="search-ajax.php">Search Student</a> </button> <br>
 
             <?php
