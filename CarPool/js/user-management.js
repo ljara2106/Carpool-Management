@@ -135,28 +135,34 @@ $(document).ready(function () {
     });
   });
 
-  // function to delete data
+  //show front end user delete button is disabled
   $("#myTable").on("click", ".deleteBtn", function () {
-    if (confirm("Are you sure you want to delete this user?")) {
-      var id = $(this).val();
-      $.ajax({
-        url: "/../user-management-actions.php?action=deleteData",
-        type: "POST",
-        dataType: "json",
-        data: {
-          id,
-        },
-        success: function (response) {
-          if (response.statusCode == 200) {
-            fetchData();
-            $("#successToast").toast("show");
-            $("#successMsg").html(response.message);
-          } else if (response.statusCode == 500) {
-            $("#errorToast").toast("show");
-            $("#errorMsg").html(response.message);
-          }
-        },
-      });
-    }
+    $("#errorToast").toast("show");
+    $("#errorMsg").html("You do not have permission to delete users");
   });
+
+  // function to delete data
+  // $("#myTable").on("click", ".deleteBtn", function () {
+  //   if (confirm("Are you sure you want to delete this user?")) {
+  //     var id = $(this).val();
+  //     $.ajax({
+  //       url: "/../user-management-actions.php?action=deleteData",
+  //       type: "POST",
+  //       dataType: "json",
+  //       data: {
+  //         id,
+  //       },
+  //       success: function (response) {
+  //         if (response.statusCode == 200) {
+  //           fetchData();
+  //           $("#successToast").toast("show");
+  //           $("#successMsg").html(response.message);
+  //         } else if (response.statusCode == 500) {
+  //           $("#errorToast").toast("show");
+  //           $("#errorMsg").html(response.message);
+  //         }
+  //       },
+  //     });
+  //   }
+  // });
 });
