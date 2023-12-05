@@ -169,19 +169,19 @@ if ($_GET["action"] === "fetchSingle") {
 // function to update data
 if ($_GET["action"] === "updateData") {
 
-  if (!empty($_POST["teacher_id"]) && !empty($_POST["name"]) && !empty($_POST["email"])) {
+  if (!empty($_POST["name"]) && !empty($_POST["email"])) {
     $id = mysqli_real_escape_string($mysqli, $_POST["id"]);
-    $teacher_id = mysqli_real_escape_string($mysqli, $_POST["teacher_id"]);
+    $teacher_id = !empty($_POST["teacher_id"]) ? mysqli_real_escape_string($mysqli, $_POST["teacher_id"]) : null; //check if teacher_id is provided
     $name = $_POST["name"]; // No escaping here
     $email = mysqli_real_escape_string($mysqli, $_POST["email"]);
-
-    // Check if password is provided
-    $password = !empty($_POST["password"]) ? password_hash($_POST["password"], PASSWORD_DEFAULT) : null;
-
+    $password = !empty($_POST["password"]) ? password_hash($_POST["password"], PASSWORD_DEFAULT) : null; // Check if password is provided
+    
     // Selects teacher name from user table to assign to students table in the teacher_name column
     $sqlSelect = "SELECT teacher_id, name FROM user WHERE teacher_id = '$teacher_id'";
     $rows = mysqli_query($mysqli, $sqlSelect);
-    if (mysqli_num_rows($rows) > 0) {
+
+    // Check if teacher_id is null or if teacher_id exists in user table
+    if ($teacher_id === null || mysqli_num_rows($rows) > 0) {
       $update_teachername = mysqli_fetch_assoc($rows);
 
       // Use prepared statements to prevent SQL injection
