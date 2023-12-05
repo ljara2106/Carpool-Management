@@ -52,6 +52,10 @@ $(document).ready(function() {
           $("#successToast").toast("show");
           $("#successMsg").html(response.message);
           fetchData();
+          // Delay the page reload by 1 second (adjust as needed)
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
         } else if(response.statusCode == 500) {
           $("#offcanvasAddUser").offcanvas("hide");
           $("#insertBtn").removeAttr("disabled");
