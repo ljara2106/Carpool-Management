@@ -27,6 +27,9 @@ CarPool Management is a user-friendly software solution designed for elementary 
 - Maintain a comprehensive student database.
 - Add, edit, or remove student records with ease.
 
+### User Management
+- Add, edit or remove teacher staff and administrative users.
+
 ## Benefits
 
 ### Enhanced Privacy
