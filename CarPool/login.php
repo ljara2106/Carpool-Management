@@ -7,7 +7,7 @@ include("validate-captcha.php");
 <style>
     body {
         background-color: #18202A;
-        color: #FFFFFF; /* Set text color to white for better visibility on the dark background */
+        color: #FFFFFF;
     }
 
     @media only screen and (max-width: 100px) {
@@ -22,12 +22,15 @@ include("validate-captcha.php");
         margin: 20px 10% 0 10%;
     }
 
-    /* Add the following CSS for the login form container */
     form {
-        background-color: #2C3E50; /* Set the background color for the form */
-        padding: 20px; /* Add some padding to the form container */
-        border-radius: 10px; /* Add border-radius for rounded corners */
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add box-shadow for a pop-out effect */
+        background-color: #2C3E50;
+        /* Dark Blue */
+        padding: 20px;
+        /* Add some padding */
+        border-radius: 10px;
+        /* Rounded corners */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        /* Black shadow */
     }
 
     label {
@@ -73,7 +76,7 @@ include("validate-captcha.php");
 </head>
 
 <body>
-<noscript>
+    <noscript>
         <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
     </noscript>
     <div class="WarningMsg">
@@ -87,7 +90,7 @@ include("validate-captcha.php");
         Use of this system without appropriate authority, or in excess of authority, may result in:
         <br>
         <br>
-        * Disciplinary action and/or,</br> 
+        * Disciplinary action and/or,</br>
         * Criminal sanctions and/or other appropriate action and/or,</br>
         * Civil and criminal penalties pursuant to Title 26 Sections 7213, 7213A and 7431 of the United States Code.
         <br>
@@ -112,7 +115,7 @@ include("validate-captcha.php");
         <br>
         <br>
         <form action="login.php" method="post">
-            <!-- Your form fields... -->
+
             <h1>Login</h1>
             <br>
             <label for="email">Email</label>
