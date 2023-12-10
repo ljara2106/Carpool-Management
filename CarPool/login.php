@@ -5,6 +5,11 @@ include("validate-captcha.php");
 <html>
 
 <style>
+    body {
+        background-color: #18202A;
+        color: #FFFFFF; /* Set text color to white for better visibility on the dark background */
+    }
+
     @media only screen and (max-width: 100px) {
         .g-recaptcha {
             transform: scale(0.77);
@@ -14,8 +19,48 @@ include("validate-captcha.php");
 
     .WarningMsg {
         font-size: 10px;
-        /* example size, can be any size, in px, em, rem, % */
-        margin: 20px, 10%, 0px, 10%;
+        margin: 20px 10% 0 10%;
+    }
+
+    /* Add the following CSS for the login form container */
+    form {
+        background-color: #2C3E50; /* Set the background color for the form */
+        padding: 20px; /* Add some padding to the form container */
+        border-radius: 10px; /* Add border-radius for rounded corners */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add box-shadow for a pop-out effect */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: calc(100% - 16px);
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+    }
+
+    @media only screen and (max-width: 600px) {
+        input {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (min-width: 601px) {
+        input {
+            width: 50%;
+        }
+    }
+
+    button {
+        background-color: #3498DB;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>
 
@@ -24,13 +69,11 @@ include("validate-captcha.php");
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
-    <!--<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>-->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
 </head>
 
 <body>
-    <noscript>
+<noscript>
         <p style="text-align: center;">Please enable JavaScript in your browser before using this website.</p>
     </noscript>
     <div class="WarningMsg">
@@ -57,19 +100,21 @@ include("validate-captcha.php");
     <br>
 
     <center>
-
         <a href="index.php"><img src="img/txlogo.png" alt="Thanksgiving Elementary"></a>
         <br>
-        <h1>Login</h1>
+        <!--<h1>Login</h1>-->
         <br>
         <?php if ($is_invalid) : ?>
             <em>
-                <p style="color:tomato;">Invalid login, check credentials.
-            </em></p>
+                <p style="color:tomato;">Invalid login, check credentials.</p>
+            </em>
         <?php endif; ?>
         <br>
         <br>
         <form action="login.php" method="post">
+            <!-- Your form fields... -->
+            <h1>Login</h1>
+            <br>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" size="30" value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
 
@@ -84,10 +129,10 @@ include("validate-captcha.php");
             <button>Log in</button>
         </form>
     </center>
-</body>
 
-<footer>
-    <p><?php include "includes/footer.php"; ?></p>
-</footer>
+    <footer>
+        <p><?php include "includes/footer.php"; ?></p>
+    </footer>
+</body>
 
 </html>
