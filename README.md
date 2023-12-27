@@ -43,6 +43,7 @@ CarPool Management is a user-friendly software solution designed for elementary 
 
 ### Security Measures
 - Implementation of reCAPTCHA or Cloudflare's Turnstile keeps malicious bots at bay.
+- Added IP log for security and tracking purposes.
 
 ## Considerations
 
