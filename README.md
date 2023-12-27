@@ -57,7 +57,7 @@ CarPool Management is a user-friendly software solution designed for elementary 
 - JavaScript
 - HTML
 
-![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/20650464/209595806-8379244a-5913-49a9-9624-82f82b5b47fe.gif)
+![ezgifmegif](https://github.com/ljara2106/Carpool-Management/assets/20650464/6b4ae54d-2488-4478-b211-8472a1eb7418)
 
 
 CarPool Management simplifies the carpool pickup process while prioritizing student privacy and safety. Say goodbye to the chaos and embrace a more efficient and secure dismissal system.
