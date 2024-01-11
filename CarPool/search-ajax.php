@@ -211,8 +211,8 @@ if (isset($_SESSION["user_id"])) {
                                 <th><strong>Student ID</strong></th>
                                 <th><strong>First Name</strong></th>
                                 <th><strong>Last Name</strong></th>
-                                <th><strong>Grade</strong></strig>
-                                </th>
+                                <th><strong>Grade</strong></th>
+
                                 <th><strong>Teacher</strong></th>
                             </tr>
                         </thead>
