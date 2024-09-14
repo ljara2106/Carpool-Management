@@ -1,1 +1,3 @@
 CarPool/dbconfig/database.php
+.DS_Store
+.env
