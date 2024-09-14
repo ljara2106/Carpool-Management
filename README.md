@@ -45,12 +45,7 @@ CarPool Management is a user-friendly software solution designed for elementary 
 - Implementation of reCAPTCHA or Cloudflare's Turnstile keeps malicious bots at bay.
 - Added IP log for security and tracking purposes.
 
-## Considerations
-
-### Internet Connectivity
-- The tool requires an internet connection to function effectively.
-
-## Technologies Used
+### Technologies Used
 
 - PHP
 - MySQL
