@@ -42,9 +42,9 @@ if (isset($_SESSION["user_id"])) {
 
             <!--code for QR code scanner-->
 
-            <!-- <script src="js/html5-qrcode.min.js"></script>
+             <script src="js/html5-qrcode.min.js"></script>
 
-            <div style="width: 300px" id="reader"></div>-->
+            <div style="width: 300px" id="reader"></div>
 
             <!--code for QR code scanner-->
 
@@ -76,7 +76,7 @@ if (isset($_SESSION["user_id"])) {
                 }
 
                 // QR code scanner *****************************************************************************************
-                /*  function onScanSuccess(decodedText, decodedResult) {
+                  function onScanSuccess(decodedText, decodedResult) {
                      // Handle on success condition with the decoded text or result.
                      console.log(`Scan result: ${decodedText}`, decodedResult);
                      document.getElementById("search").value = decodedText;
@@ -94,7 +94,7 @@ if (isset($_SESSION["user_id"])) {
                          fps: 2,
                          qrbox: 200
                      });
-                 html5QrcodeScanner.render(onScanSuccess, onScanError); */
+                 html5QrcodeScanner.render(onScanSuccess, onScanError); 
                 // QR code scanner *****************************************************************************************    
             </script>
 
